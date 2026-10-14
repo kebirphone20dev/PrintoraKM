@@ -18,14 +18,14 @@ button,a{cursor:pointer}
 a{text-decoration:none;color:inherit}
 button{transition:.2s}
 button:hover{transform:translateY(-1px)}
-.topbar{height:72px;position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 25px;gap:15px}
+.topbar{min-height:72px;position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:12px 25px;gap:15px}
 .brand{display:flex;align-items:center;gap:10px}
 .logo{width:43px;height:43px;border-radius:13px;background:linear-gradient(135deg,#2868f5,#20c8e8);display:grid;place-items:center;color:#fff;font-size:24px;font-weight:900}
 .brand strong{font-size:21px;color:var(--navy)}
 .brand strong span{color:var(--blue)}
 .brand small{display:block;font-size:11px;color:var(--muted);margin-top:3px}
 .toplinks{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.toplinks button,.iconbtn{border:0;background:#f0f4fb;color:var(--text);padding:10px 13px;border-radius:10px;font-weight:700;font-size:13px}
+.toplinks button{border:0;background:#f0f4fb;color:var(--text);padding:10px 13px;border-radius:10px;font-weight:700;font-size:13px}
 .toplinks button.active{background:#e9f0ff;color:var(--blue)}
 .layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:22px;width:min(1450px,96%);margin:24px auto;align-items:start}
 .sidebar{background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:16px;position:sticky;top:92px;box-shadow:var(--shadow)}
@@ -91,524 +91,184 @@ button:hover{transform:translateY(-1px)}
 .toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);background:#101b35;color:#fff;padding:13px 18px;border-radius:12px;opacity:0;pointer-events:none;transition:.25s;z-index:99;font-size:13px;max-width:90%;text-align:center}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 body.dark{--bg:#091222;--panel:#101e33;--navy:#f2f6ff;--text:#e5edfc;--muted:#a0b0c8;--border:#263751;--shadow:0 10px 30px #0002}
-body.dark .topbar,body.dark .section,body.dark .stat,body.dark .sidebar,body.dark .service-card,body.dark .modal-box{background:var(--panel)}
+body.dark .topbar,body.dark .section,body.dark .stat,body.dark .sidebar{background:var(--panel)}
 body.dark .side-btn{color:#b8c5da}
 body.dark .search,body.dark .field input,body.dark .field textarea,body.dark .field select,body.dark .preview{background:#0b1728;color:var(--text);border-color:var(--border)}
 body.dark .service-card h3,body.dark .section-head h2,body.dark .workspace-head h2{color:var(--text)}
 @media(max-width:1050px){.layout{grid-template-columns:210px minmax(0,1fr)}.service-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.toplinks button{padding:9px}}
-@media(max-width:720px){
- .topbar{height:auto;min-height:66px;padding:12px 4%;flex-wrap:wrap}
- .toplinks{width:100%;overflow:auto;flex-wrap:nowrap;padding-bottom:3px}
- .toplinks button{white-space:nowrap}
- .layout{grid-template-columns:1fr;width:94%;margin:15px auto}
- .sidebar{position:static;padding:10px}
- .side-title{padding:8px}
- .side-main{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px}
- .side-btn{margin:0;padding:10px;font-size:12px}
- .side-sub{padding:0;grid-column:1/-1}
- .side-sub.open{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
- .welcome{padding:23px}
- .stats{gap:8px}
- .stat{padding:12px}
- .stat strong{font-size:21px}
- .stat-top{font-size:10px}
- .stat-icon{width:31px;height:31px;font-size:17px}
- .section{padding:16px}
- .service-grid{gap:10px}
- .service-card{padding:13px}
- .service-card h3{font-size:13px}
- .service-card p{min-height:55px}
- .form-grid{grid-template-columns:1fr}
- .field.full{grid-column:auto}
-}
+@media(max-width:720px){.topbar{height:auto;min-height:66px;padding:12px 4%;flex-wrap:wrap}.toplinks{width:100%;overflow:auto;flex-wrap:nowrap;padding-bottom:3px}.toplinks button{white-space:nowrap}.layout{grid-template-columns:1fr;width:94%;margin:15px auto}.sidebar{position:static;padding:10px}.side-title{padding:8px}.side-main{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px}.side-btn{margin:0;padding:10px;font-size:12px}.side-sub{padding:0;grid-column:1/-1}.side-sub.open{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.welcome{padding:23px}.stats{gap:8px}.stat{padding:12px}.stat strong{font-size:21px}.stat-top{font-size:10px}.stat-icon{width:31px;height:31px;font-size:17px}.section{padding:16px}.service-grid{gap:10px}.service-card{padding:13px}.service-card h3{font-size:13px}.service-card p{min-height:55px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}}
 @media(max-width:400px){.service-grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr}.stat{display:flex;align-items:center;gap:12px}.stat strong{margin:0 auto 0 0}.stat small{display:none}}
 </style>
 </head>
-
 <body>
 <header class="topbar">
-  <a href="index.html" class="brand">
-    <div class="logo">P</div>
-    <div><strong>Printora<span>KM</span></strong><small>فضاء الزبون</small></div>
-  </a>
-  <nav class="toplinks">
-    <button class="active" data-page="home">الرئيسية</button>
-    <button data-page="orders">طلباتي</button>
-    <button data-page="points">نقاطي</button>
-    <button data-page="profile">حسابي</button>
-    <button id="themeButton">🌙 الوضع الداكن</button>
-    <button onclick="location.href='index.html'">↩ الرئيسية العامة</button>
-  </nav>
+<a href="index.html" class="brand"><div class="logo">P</div><div><strong>Printora<span>KM</span></strong><small>فضاء الزبون</small></div></a>
+<nav class="toplinks">
+<button class="active" data-page="home">الرئيسية</button>
+<button data-page="orders">طلباتي</button>
+<button data-page="points">نقاطي</button>
+<button data-page="profile">حسابي</button>
+<button id="themeButton">🌙 الوضع الداكن</button>
+<button id="logoutButton">تسجيل الخروج ↩</button>
+</nav>
 </header>
-
 <div class="layout">
-  <aside class="sidebar">
-    <div class="side-title">قائمة الخدمات</div>
-    <div class="side-main">
-      <button class="side-btn active" data-page="home"><span class="ico">🏠</span>الرئيسية</button>
-
-      <button class="side-btn" data-toggle="research"><span class="ico">📚</span>البحوث والدراسة　⌄</button>
-      <div class="side-sub" id="sub-research">
-        <button data-category="research">بحث جاهز</button>
-        <button data-category="research">بحث ابتدائي</button>
-        <button data-category="research">بحث متوسط</button>
-        <button data-category="research">بحث ثانوي</button>
-        <button data-category="research">بحث جامعي</button>
-        <button data-category="research">تمارين وحلول</button>
-      </div>
-
-      <button class="side-btn" data-toggle="documents"><span class="ico">📄</span>الوثائق الإدارية　⌄</button>
-      <div class="side-sub" id="sub-documents">
-        <button data-service="طلب خطي">طلب خطي</button>
-        <button data-service="طلب عمل">طلب عمل</button>
-        <button data-service="طلب إداري">طلب إداري</button>
-        <button data-service="تصريح شرفي">تصريح شرفي</button>
-      </div>
-
-      <button class="side-btn" data-toggle="cv"><span class="ico">👔</span>CV ورسائل التحفيز　⌄</button>
-      <div class="side-sub" id="sub-cv">
-        <button data-service="إنشاء CV">إنشاء CV</button>
-        <button data-service="رسالة تحفيز">رسالة تحفيز</button>
-        <button data-service="طلب توظيف">طلب توظيف</button>
-      </div>
-
-      <button class="side-btn" data-toggle="digital"><span class="ico">🌐</span>الخدمات الرقمية　⌄</button>
-      <div class="side-sub" id="sub-digital">
-        <button data-category="digital">التسجيلات الإلكترونية</button>
-        <button data-category="digital">المسابقات والتوظيف</button>
-        <button data-category="digital">روابط رسمية</button>
-      </div>
-
-      <button class="side-btn" data-toggle="business"><span class="ico">🧾</span>خدمات المحلات　⌄</button>
-      <div class="side-sub" id="sub-business">
-        <button data-service="إنشاء فاتورة">إنشاء فاتورة</button>
-        <button data-service="حساب الزبائن">حساب الزبائن</button>
-        <button data-service="تحويل الأرقام إلى حروف">الأرقام إلى حروف</button>
-      </div>
-
-      <button class="side-btn" data-toggle="tools"><span class="ico">🛠️</span>أدوات PDF والملفات　⌄</button>
-      <div class="side-sub" id="sub-tools">
-        <button data-service="تحويل الصور إلى PDF">الصور إلى PDF</button>
-        <button data-service="تحويل PDF إلى صور">PDF إلى صور</button>
-        <button data-service="استخراج النص من صورة">استخراج النص OCR</button>
-        <button data-service="دمج ملفات PDF">دمج PDF</button>
-        <button data-service="إنشاء QR Code">إنشاء QR Code</button>
-      </div>
-
-      <button class="side-btn" data-page="profile"><span class="ico">👤</span>الملف الشخصي</button>
-      <button class="side-btn" data-page="points"><span class="ico">⭐</span>شراء النقاط</button>
-      <button class="side-btn" data-page="orders"><span class="ico">📋</span>طلبات الدفع والطلبات</button>
-    </div>
-  </aside>
-
-  <main class="main">
-    <section id="homePage">
-      <div class="welcome">
-        <small>PRINTORAKM · فضاء الزبون الرسمي</small>
-        <h1>مرحبا بكم في PrintoraKM 👋</h1>
-        <p>كل خدماتك في منصة واحدة. اختر الخدمة التي تحتاجها، وابدأ تجهيز طلبك من واجهة بسيطة ومنظمة.</p>
-        <div class="welcome-actions">
-          <button class="btn btn-white" onclick="document.getElementById('servicesSection').scrollIntoView({behavior:'smooth'})">اكتشف الخدمات ←</button>
-          <button class="btn" style="background:#ffffff20;color:#fff;border:1px solid #ffffff30" data-page="profile">إكمال حسابي</button>
-        </div>
-      </div>
-
-      <div class="stats">
-        <div class="stat">
-          <div>
-            <div class="stat-top">رصيد النقاط <span class="stat-icon">⭐</span></div>
-            <strong id="pointsValue">0</strong>
-            <small>نقاط الحساب</small>
-          </div>
-        </div>
-        <div class="stat">
-          <div>
-            <div class="stat-top">طلباتي <span class="stat-icon">📋</span></div>
-            <strong id="ordersValue">0</strong>
-            <small>طلبات محفوظة على هذا الجهاز</small>
-          </div>
-        </div>
-        <div class="stat">
-          <div>
-            <div class="stat-top">الخدمات <span class="stat-icon">🧰</span></div>
-            <strong>6</strong>
-            <small>أقسام رئيسية</small>
-          </div>
-        </div>
-      </div>
-
-      <section class="section" id="servicesSection">
-        <div class="section-head">
-          <div><h2>اختر الخدمة</h2><p>اضغط على الخدمة لفتح واجهتها في وسط الصفحة.</p></div>
-        </div>
-        <input class="search" id="serviceSearch" placeholder="🔎 ابحث عن خدمة..." type="search">
-        <div class="service-grid" id="serviceGrid"></div>
-      </section>
-    </section>
-
-    <section class="section workspace" id="workspace">
-      <div class="workspace-head">
-        <div class="service-icon" id="workspaceIcon">📄</div>
-        <div><h2 id="workspaceTitle">الخدمة</h2><p id="workspaceDesc">أدخل المعلومات المطلوبة.</p></div>
-        <button class="back-btn" id="backHome">← رجوع</button>
-      </div>
-      <div id="workspaceBody"></div>
-    </section>
-
-    <section class="section workspace" id="ordersPage">
-      <div class="section-head"><div><h2>طلباتي</h2><p>الطلبات المحفوظة محليًا في هذا المتصفح.</p></div></div>
-      <div id="ordersList"></div>
-    </section>
-
-    <section class="section workspace" id="pointsPage">
-      <div class="section-head"><div><h2>نقاطي وشراء النقاط</h2><p>واجهة أولية لإدارة النقاط.</p></div></div>
-      <div class="notice">نظام الدفع والرصيد الحقيقي يحتاج إلى ربطه بالخادم وقاعدة البيانات قبل استعماله.</div>
-      <h3>رصيدك الحالي: <span id="pointsValue2">0</span> نقطة</h3>
-      <div class="service-grid" style="margin-top:18px">
-        <div class="service-card"><div class="service-icon">⭐</div><h3>100 نقطة</h3><p>باقة صغيرة</p><button class="btn btn-light" onclick="showToast('سيتم تفعيل شراء النقاط بعد ربط الدفع.')">اختيار الباقة</button></div>
-        <div class="service-card"><div class="service-icon">💎</div><h3>500 نقطة</h3><p>باقة متوسطة</p><button class="btn btn-light" onclick="showToast('سيتم تفعيل شراء النقاط بعد ربط الدفع.')">اختيار الباقة</button></div>
-        <div class="service-card"><div class="service-icon">👑</div><h3>1000 نقطة</h3><p>باقة كبيرة</p><button class="btn btn-light" onclick="showToast('سيتم تفعيل شراء النقاط بعد ربط الدفع.')">اختيار الباقة</button></div>
-      </div>
-    </section>
-
-    <section class="section workspace" id="profilePage">
-      <div class="section-head"><div><h2>الملف الشخصي</h2><p>احفظ معلوماتك على هذا الجهاز.</p></div></div>
-      <form id="profileForm">
-        <div class="form-grid">
-          <div class="field"><label>الاسم واللقب</label><input name="name" placeholder="الاسم الكامل"></div>
-          <div class="field"><label>اسم المستخدم</label><input name="username" placeholder="اسم المستخدم"></div>
-          <div class="field"><label>رقم الهاتف</label><input name="phone" placeholder="رقم الهاتف"></div>
-          <div class="field"><label>البريد الإلكتروني</label><input name="email" type="email" placeholder="name@example.com"></div>
-        </div>
-        <div class="actions"><button class="btn btn-primary" type="submit">حفظ المعلومات</button></div>
-      </form>
-    </section>
-
-    <div class="footer">© <span id="year"></span> PrintoraKM · كل خدماتك في منصة واحدة</div>
-  </main>
+<aside class="sidebar">
+<div class="side-title">قائمة الخدمات</div>
+<div class="side-main">
+<button class="side-btn active" data-page="home"><span class="ico">🏠</span>الرئيسية</button>
+<button class="side-btn" data-toggle="research"><span class="ico">📚</span>البحوث والدراسة　⌄</button>
+<div class="side-sub" id="sub-research">
+<button data-service="بحث جاهز">بحث جاهز</button><button data-service="بحث ابتدائي">بحث ابتدائي</button><button data-service="بحث متوسط">بحث متوسط</button><button data-service="بحث ثانوي">بحث ثانوي</button><button data-service="بحث جامعي">بحث جامعي</button><button data-service="تمارين وحلول">تمارين وحلول</button>
 </div>
-
+<button class="side-btn" data-toggle="documents"><span class="ico">📄</span>الوثائق الإدارية　⌄</button>
+<div class="side-sub" id="sub-documents"><button data-service="طلب خطي">طلب خطي</button><button data-service="طلب عمل">طلب عمل</button><button data-service="طلب إداري">طلب إداري</button><button data-service="تصريح شرفي">تصريح شرفي</button></div>
+<button class="side-btn" data-toggle="cv"><span class="ico">👔</span>CV ورسائل التحفيز　⌄</button>
+<div class="side-sub" id="sub-cv"><button data-service="إنشاء CV">إنشاء CV</button><button data-service="رسالة تحفيز">رسالة تحفيز</button><button data-service="طلب توظيف">طلب توظيف</button></div>
+<button class="side-btn" data-toggle="digital"><span class="ico">🌐</span>الخدمات الرقمية　⌄</button>
+<div class="side-sub" id="sub-digital"><button data-service="التسجيلات الإلكترونية">التسجيلات الإلكترونية</button><button data-service="المسابقات والتوظيف">المسابقات والتوظيف</button><button data-service="روابط رسمية">روابط رسمية</button></div>
+<button class="side-btn" data-toggle="business"><span class="ico">🧾</span>خدمات المحلات　⌄</button>
+<div class="side-sub" id="sub-business"><button data-service="إنشاء فاتورة">إنشاء فاتورة</button><button data-service="حساب الزبائن">حساب الزبائن</button><button data-service="تحويل الأرقام إلى حروف">الأرقام إلى حروف</button></div>
+<button class="side-btn" data-toggle="tools"><span class="ico">🛠️</span>أدوات PDF والملفات　⌄</button>
+<div class="side-sub" id="sub-tools"><button data-service="تحويل الصور إلى PDF">الصور إلى PDF</button><button data-service="تحويل PDF إلى صور">PDF إلى صور</button><button data-service="استخراج النص من صورة">استخراج النص OCR</button><button data-service="دمج ملفات PDF">دمج PDF</button><button data-service="إنشاء QR Code">إنشاء QR Code</button></div>
+<button class="side-btn" data-page="profile"><span class="ico">👤</span>الملف الشخصي</button>
+<button class="side-btn" data-page="points"><span class="ico">⭐</span>شراء النقاط</button>
+<button class="side-btn" data-page="orders"><span class="ico">📋</span>طلباتي</button>
+</div>
+</aside>
+<main class="main">
+<section id="homePage">
+<div class="welcome"><small>PRINTORAKM · فضاء الزبون الرسمي</small><h1>مرحبا بكم في PrintoraKM 👋</h1><p>كل خدماتك في منصة واحدة. اختر الخدمة التي تحتاجها، وابدأ تجهيز طلبك من واجهة بسيطة ومنظمة.</p><div class="welcome-actions"><button class="btn btn-white" id="discoverButton">اكتشف الخدمات ←</button><button class="btn" style="background:#ffffff20;color:#fff;border:1px solid #ffffff30" data-page="profile">إكمال حسابي</button></div></div>
+<div class="stats">
+<div class="stat"><div><div class="stat-top">رصيد النقاط <span class="stat-icon">⭐</span></div><strong id="pointsValue">0</strong><small>نقاط الحساب</small></div></div>
+<div class="stat"><div><div class="stat-top">طلباتي <span class="stat-icon">📋</span></div><strong id="ordersValue">0</strong><small>طلبات محفوظة في حسابك</small></div></div>
+<div class="stat"><div><div class="stat-top">الخدمات <span class="stat-icon">🧰</span></div><strong>6</strong><small>أقسام رئيسية</small></div></div>
+</div>
+<section class="section" id="servicesSection"><div class="section-head"><div><h2>اختر الخدمة</h2><p>اضغط على الخدمة لفتح واجهتها في وسط الصفحة.</p></div></div><input class="search" id="serviceSearch" placeholder="🔎 ابحث عن خدمة..." type="search"><div class="service-grid" id="serviceGrid"></div></section>
+</section>
+<section class="section workspace" id="workspace"><div class="workspace-head"><div class="service-icon" id="workspaceIcon">📄</div><div><h2 id="workspaceTitle">الخدمة</h2><p id="workspaceDesc">أدخل المعلومات المطلوبة.</p></div><button class="back-btn" id="backHome">← رجوع</button></div><div id="workspaceBody"></div></section>
+<section class="section workspace" id="ordersPage"><div class="section-head"><div><h2>طلباتي</h2><p>الطلبات المحفوظة في حسابك.</p></div></div><div id="ordersList"></div></section>
+<section class="section workspace" id="pointsPage"><div class="section-head"><div><h2>نقاطي وشراء النقاط</h2><p>رصيد النقاط من قاعدة البيانات.</p></div></div><div class="notice">شراء النقاط والدفع غير مفعّلين بعد. لن يتم تغيير رصيدك من هذه الواجهة.</div><h3>رصيدك الحالي: <span id="pointsValue2">0</span> نقطة</h3></section>
+<section class="section workspace" id="profilePage"><div class="section-head"><div><h2>الملف الشخصي</h2><p>احفظ معلوماتك في حسابك.</p></div></div><form id="profileForm"><div class="form-grid"><div class="field"><label>الاسم واللقب</label><input name="name" placeholder="الاسم الكامل"></div><div class="field"><label>اسم المستخدم</label><input name="username" placeholder="اسم المستخدم"></div><div class="field"><label>رقم الهاتف</label><input name="phone" placeholder="رقم الهاتف"></div><div class="field"><label>البريد الإلكتروني</label><input name="email" type="email" readonly></div></div><div class="actions"><button class="btn btn-primary" type="submit">حفظ المعلومات</button></div></form></section>
+<div class="footer">© <span id="year"></span> PrintoraKM · كل خدماتك في منصة واحدة</div>
+</main>
+</div>
 <div class="toast" id="toast"></div>
-
-<script>
-const categories=[
-{id:"research",title:"البحوث والدراسة",icon:"📚",desc:"بحوث مدرسية وجامعية وتمارين",services:[
-["بحث جاهز","📘","إنشاء بحث مع إمكانية المعاينة والتصدير"],
-["بحث ابتدائي","🎒","بحوث للمستوى الابتدائي"],
-["بحث متوسط","📗","بحوث للمستوى المتوسط"],
-["بحث ثانوي","🎓","بحوث للمستوى الثانوي"],
-["بحث جامعي","🏛️","بحوث للمستوى الجامعي"],
-["تمارين وحلول","✏️","تمارين تعليمية ومراجعة"],
-["فروض واختبارات","📝","مواضيع للمراجعة"],
-["تحويل البحث إلى PowerPoint","📊","إعداد عرض تقديمي"]
-]},
-{id:"documents",title:"الوثائق الإدارية",icon:"📄",desc:"طلبات خطية ونماذج إدارية",services:[
-["طلب خطي","📝","إنشاء طلب خطي جاهز للطباعة"],
-["طلب عمل","💼","إعداد طلب عمل"],
-["طلب إداري","📄","إعداد طلب إداري"],
-["تصريح شرفي","✍️","إعداد تصريح شرفي"],
-["شهادة وإقرار","📋","نماذج متنوعة"]
-]},
-{id:"cv",title:"CV ورسائل التحفيز",icon:"👔",desc:"سيرة ذاتية احترافية",services:[
-["إنشاء CV","👔","إعداد السيرة الذاتية"],
-["CV بالفرنسية","🇫🇷","سيرة ذاتية باللغة الفرنسية"],
-["رسالة تحفيز","✉️","إعداد رسالة تحفيز"],
-["طلب توظيف","💼","طلب توظيف مخصص"]
-]},
-{id:"digital",title:"الخدمات الرقمية",icon:"🌐",desc:"التسجيلات والمنصات الرسمية",services:[
-["التسجيلات الإلكترونية","🖥️","روابط التسجيلات"],
-["المسابقات والتوظيف","📢","روابط المسابقات"],
-["الخدمات الجامعية","🎓","خدمات ومنصات جامعية"],
-["روابط رسمية","🔗","الوصول إلى المواقع الرسمية"]
-]},
-{id:"business",title:"خدمات المحلات",icon:"🧾",desc:"فواتير وحسابات الزبائن",services:[
-["إنشاء فاتورة","🧾","إعداد فاتورة بسيطة"],
-["حساب الزبائن","👥","تنظيم حسابات الزبائن"],
-["تحويل الأرقام إلى حروف","🔢","كتابة الأرقام بالحروف"],
-["سجل المبيعات","📒","تنظيم المبيعات"]
-]},
-{id:"tools",title:"أدوات PDF والملفات",icon:"🛠️",desc:"تحويل الملفات وأدوات المكتب",services:[
-["تحويل الصور إلى PDF","🖼️","جمع الصور في ملف PDF"],
-["تحويل PDF إلى صور","📑","استخراج صفحات PDF"],
-["استخراج النص من صورة","🔎","التعرف على النصوص OCR"],
-["دمج ملفات PDF","📚","جمع ملفات PDF"],
-["إنشاء QR Code","▦","إنشاء رمز QR"],
-["ترجمة النصوص","🌍","أدوات ترجمة النصوص"]
-]}
-];
+<script type="module">
+import { supabase } from "./supabase.js";
 
 const $=id=>document.getElementById(id);
-let toastTimer;
-let savedOrders=readStore("printora_orders",[]);
-let profile=readStore("printora_profile",{});
-let points=Number(readStore("printora_points",0))||0;
+let currentUser=null,toastTimer,savedOrders=[],profile={},points=0;
 
-function readStore(key,fallback){
- try{const v=localStorage.getItem(key);return v===null?fallback:JSON.parse(v)}
- catch{return fallback}
-}
-function saveStore(key,value){localStorage.setItem(key,JSON.stringify(value))}
-function showToast(message){
- $("toast").textContent=message;
- $("toast").classList.add("show");
- clearTimeout(toastTimer);
- toastTimer=setTimeout(()=>$("toast").classList.remove("show"),3000);
-}
-function allServices(){
- return categories.flatMap(c=>c.services.map(s=>({name:s[0],icon:s[1],desc:s[2],category:c.id,categoryTitle:c.title})));
-}
-function renderServices(query=""){
- const q=normalize(query);
- const list=allServices().filter(s=>normalize(s.name+" "+s.desc+" "+s.categoryTitle).includes(q));
- $("serviceGrid").innerHTML=list.length?list.map(s=>`
- <button class="service-card" data-service="${escapeHtml(s.name)}">
- <div class="service-icon">${s.icon}</div><h3>${escapeHtml(s.name)}</h3>
- <p>${escapeHtml(s.desc)}</p><span>فتح الخدمة ←</span></button>`).join("")
- :'<div class="empty">لم نعثر على خدمة مطابقة.</div>';
- $("serviceGrid").querySelectorAll("[data-service]").forEach(b=>b.addEventListener("click",()=>openService(b.dataset.service)));
-}
-function normalize(s){
- return String(s||"").toLowerCase().replace(/[أإآ]/g,"ا").replace(/ة/g,"ه").replace(/ى/g,"ي").trim();
-}
-function escapeHtml(s){
- return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-}
-function setPage(name){
- ["homePage","workspace","ordersPage","pointsPage","profilePage"].forEach(id=>$(id).classList.remove("show"));
- $("homePage").classList.add("hidden");
- if(name==="home"){
-   $("homePage").classList.remove("hidden");
- }else{
-   const map={orders:"ordersPage",points:"pointsPage",profile:"profilePage"};
-   if(map[name])$(map[name]).classList.add("show");
- }
- document.querySelectorAll("[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===name));
- window.scrollTo({top:0,behavior:"smooth"});
- if(name==="orders")renderOrders();
- if(name==="profile")loadProfile();
- if(name==="points")updateStats();
-}
-function openService(name){
- const service=allServices().find(s=>s.name===name);
- if(!service)return;
- $("homePage").classList.add("hidden");
- $("ordersPage").classList.remove("show");
- $("pointsPage").classList.remove("show");
- $("profilePage").classList.remove("show");
- $("workspace").classList.add("show");
- $("workspaceIcon").textContent=service.icon;
- $("workspaceTitle").textContent=service.name;
- $("workspaceDesc").textContent=service.desc;
- document.querySelectorAll("[data-page]").forEach(b=>b.classList.remove("active"));
- buildServiceForm(service);
- window.scrollTo({top:0,behavior:"smooth"});
-}
+const categories=[
+{id:"research",title:"البحوث والدراسة",icon:"📚",desc:"بحوث مدرسية وجامعية وتمارين",services:[["بحث جاهز","📘","إنشاء طلب بحث مع معاينة وحفظ"],["بحث ابتدائي","🎒","بحوث للمستوى الابتدائي"],["بحث متوسط","📗","بحوث للمستوى المتوسط"],["بحث ثانوي","🎓","بحوث للمستوى الثانوي"],["بحث جامعي","🏛️","بحوث للمستوى الجامعي"],["تمارين وحلول","✏️","تمارين تعليمية ومراجعة"],["فروض واختبارات","📝","مواضيع للمراجعة"],["تحويل البحث إلى PowerPoint","📊","إعداد عرض تقديمي"]]},
+{id:"documents",title:"الوثائق الإدارية",icon:"📄",desc:"طلبات خطية ونماذج إدارية",services:[["طلب خطي","📝","إنشاء طلب خطي جاهز للطباعة"],["طلب عمل","💼","إعداد طلب عمل"],["طلب إداري","📄","إعداد طلب إداري"],["تصريح شرفي","✍️","إعداد تصريح شرفي"],["شهادة وإقرار","📋","نماذج متنوعة"]]},
+{id:"cv",title:"CV ورسائل التحفيز",icon:"👔",desc:"سيرة ذاتية احترافية",services:[["إنشاء CV","👔","إعداد السيرة الذاتية"],["CV بالفرنسية","🇫🇷","سيرة ذاتية باللغة الفرنسية"],["رسالة تحفيز","✉️","إعداد رسالة تحفيز"],["طلب توظيف","💼","طلب توظيف مخصص"]]},
+{id:"digital",title:"الخدمات الرقمية",icon:"🌐",desc:"التسجيلات والمنصات الرسمية",services:[["التسجيلات الإلكترونية","🖥️","روابط التسجيلات"],["المسابقات والتوظيف","📢","روابط المسابقات"],["الخدمات الجامعية","🎓","خدمات ومنصات جامعية"],["روابط رسمية","🔗","الوصول إلى المواقع الرسمية"]]},
+{id:"business",title:"خدمات المحلات",icon:"🧾",desc:"فواتير وحسابات الزبائن",services:[["إنشاء فاتورة","🧾","إعداد فاتورة بسيطة"],["حساب الزبائن","👥","تنظيم حسابات الزبائن"],["تحويل الأرقام إلى حروف","🔢","كتابة الأرقام بالحروف"],["سجل المبيعات","📒","تنظيم المبيعات"]]},
+{id:"tools",title:"أدوات PDF والملفات",icon:"🛠️",desc:"تحويل الملفات وأدوات المكتب",services:[["تحويل الصور إلى PDF","🖼️","جمع الصور في ملف PDF"],["تحويل PDF إلى صور","📑","استخراج صفحات PDF"],["استخراج النص من صورة","🔎","التعرف على النصوص OCR"],["دمج ملفات PDF","📚","جمع ملفات PDF"],["إنشاء QR Code","▦","إنشاء رمز QR"],["ترجمة النصوص","🌍","أدوات ترجمة النصوص"]]}
+];
+
+function showToast(message){$("toast").textContent=message;$("toast").classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>$("toast").classList.remove("show"),3500)}
+window.showToast=showToast;
+function escapeHtml(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function normalize(s){return String(s||"").toLowerCase().replace(/[أإآ]/g,"ا").replace(/ة/g,"ه").replace(/ى/g,"ي").trim()}
+function allServices(){return categories.flatMap(c=>c.services.map(s=>({name:s[0],icon:s[1],desc:s[2],category:c.id,categoryTitle:c.title})))}
+function renderServices(query=""){const q=normalize(query),list=allServices().filter(s=>normalize(s.name+" "+s.desc+" "+s.categoryTitle).includes(q));$("serviceGrid").innerHTML=list.length?list.map(s=>`<button class="service-card" data-service="${escapeHtml(s.name)}"><div class="service-icon">${s.icon}</div><h3>${escapeHtml(s.name)}</h3><p>${escapeHtml(s.desc)}</p><span>فتح الخدمة ←</span></button>`).join(""):'<div class="empty">لم نعثر على خدمة مطابقة.</div>'; $("serviceGrid").querySelectorAll("[data-service]").forEach(b=>b.addEventListener("click",()=>openService(b.dataset.service)))}
+
+function setPage(name){["homePage","workspace","ordersPage","pointsPage","profilePage"].forEach(id=>$(id).classList.remove("show"));$("homePage").classList.add("hidden");if(name==="home")$("homePage").classList.remove("hidden");else{const map={orders:"ordersPage",points:"pointsPage",profile:"profilePage"};if(map[name])$(map[name]).classList.add("show")}document.querySelectorAll("[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===name));window.scrollTo({top:0,behavior:"smooth"});if(name==="orders")renderOrders();if(name==="profile")loadProfile();if(name==="points")updateStats()}
+function openService(name){const service=allServices().find(s=>s.name===name);if(!service)return;$("homePage").classList.add("hidden");["ordersPage","pointsPage","profilePage"].forEach(id=>$(id).classList.remove("show"));$("workspace").classList.add("show");$("workspaceIcon").textContent=service.icon;$("workspaceTitle").textContent=service.name;$("workspaceDesc").textContent=service.desc;document.querySelectorAll("[data-page]").forEach(b=>b.classList.remove("active"));buildServiceForm(service);window.scrollTo({top:0,behavior:"smooth"})}
+
 function buildServiceForm(service){
- const name=service.name;
- const body=$("workspaceBody");
- if(name==="طلب خطي"||name==="طلب عمل"||name==="طلب إداري"||name==="تصريح شرفي"){
-  body.innerHTML=`
-  <form id="docForm">
-   <div class="form-grid">
-    <div class="field"><label>الاسم واللقب</label><input name="fullName" required placeholder="الاسم الكامل"></div>
-    <div class="field"><label>الجهة الموجه إليها الطلب</label><input name="recipient" required placeholder="السيد مدير..."></div>
-    <div class="field"><label>الموضوع</label><input name="subject" required value="${escapeHtml(name)}"></div>
-    <div class="field"><label>المدينة والتاريخ</label><input name="placeDate" placeholder="المدينة، التاريخ"></div>
-    <div class="field full"><label>نص الطلب أو التفاصيل</label><textarea name="details" required placeholder="اكتب تفاصيل الطلب هنا..."></textarea></div>
-   </div>
-   <div class="actions"><button class="btn btn-primary">إنشاء المعاينة</button><button class="btn btn-light" type="reset">مسح</button></div>
-  </form><div id="docPreview"></div>`;
-  $("docForm").addEventListener("submit",e=>{
-   e.preventDefault();
-   const f=new FormData(e.target);
-   const text=`إلى: ${f.get("recipient")}\n\nالموضوع: ${f.get("subject")}\n\nأنا الممضي أسفله ${f.get("fullName")}، أتقدم إلى سيادتكم بهذا الطلب:\n${f.get("details")}\n\nوتفضلوا بقبول فائق الاحترام والتقدير.\n\n${f.get("placeDate")}`;
-   $("docPreview").innerHTML=`<div class="preview" id="printContent"><h3>${escapeHtml(f.get("subject"))}</h3>${escapeHtml(text)}</div><div class="actions"><button class="btn btn-primary" id="printDoc">طباعة / حفظ PDF</button><button class="btn btn-light" id="copyDoc">نسخ النص</button><button class="btn btn-light" id="saveDoc">حفظ الطلب</button></div>`;
-   $("printDoc").onclick=()=>printText(f.get("subject"),text);
-   $("copyDoc").onclick=()=>copyText(text);
-   $("saveDoc").onclick=()=>saveOrder(name,text);
-  });
- }else if(name==="بحث جاهز"||name.startsWith("بحث ")){
-  body.innerHTML=`
-  <div class="notice">يمكنك تجهيز طلب البحث ومعاينته وحفظه. إنشاء بحث تلقائي موثق وتصدير Word/PDF سيتم ربطه بخدمة الذكاء الاصطناعي لاحقًا.</div>
-  <form id="researchForm"><div class="form-grid">
-   <div class="field"><label>المستوى الدراسي</label><select name="level"><option>ابتدائي</option><option>متوسط</option><option>ثانوي</option><option>جامعي</option></select></div>
-   <div class="field"><label>المادة</label><input name="subject" required placeholder="مثال: التاريخ، العلوم..."></div>
-   <div class="field full"><label>عنوان البحث</label><input name="title" required placeholder="اكتب عنوان البحث"></div>
-   <div class="field"><label>عدد الصفحات التقريبي</label><select name="pages"><option>3 صفحات</option><option>5 صفحات</option><option>10 صفحات</option><option>15 صفحة</option><option>20 صفحة</option></select></div>
-   <div class="field"><label>إضافة صور</label><select name="pictures"><option>نعم، أريد صورًا</option><option>لا أريد صورًا</option></select></div>
-   <div class="field full"><label>تعليمات إضافية</label><textarea name="details" placeholder="المحاور المطلوبة، اللغة، الشروط..."></textarea></div>
-  </div><div class="actions"><button class="btn btn-primary">معاينة الطلب</button><button type="reset" class="btn btn-light">مسح</button></div></form><div id="researchPreview"></div>`;
-  $("researchForm").addEventListener("submit",e=>{
-   e.preventDefault();const f=new FormData(e.target);
-   const text=`طلب بحث جاهز\nالعنوان: ${f.get("title")}\nالمستوى: ${f.get("level")}\nالمادة: ${f.get("subject")}\nعدد الصفحات: ${f.get("pages")}\nالصور: ${f.get("pictures")}\nالتعليمات: ${f.get("details")}`;
-   $("researchPreview").innerHTML=`<div class="preview"><h3>معاينة طلب البحث</h3>${escapeHtml(text)}</div><div class="actions"><button class="btn btn-primary" id="saveResearch">حفظ الطلب</button><button class="btn btn-light" id="copyResearch">نسخ التفاصيل</button></div>`;
-   $("saveResearch").onclick=()=>saveOrder(name,text);
-   $("copyResearch").onclick=()=>copyText(text);
-  });
- }else if(name==="إنشاء CV"||name==="CV بالفرنسية"){
-  body.innerHTML=`
-  <form id="cvForm"><div class="form-grid">
-   <div class="field"><label>الاسم الكامل</label><input name="name" required placeholder="Nom et prénom"></div>
-   <div class="field"><label>رقم الهاتف</label><input name="phone" placeholder="Téléphone"></div>
-   <div class="field"><label>البريد الإلكتروني</label><input name="email" type="email" placeholder="Email"></div>
-   <div class="field"><label>المدينة</label><input name="city" placeholder="Ville"></div>
-   <div class="field full"><label>الخبرة المهنية</label><textarea name="experience" placeholder="Expérience professionnelle"></textarea></div>
-   <div class="field full"><label>التعليم والشهادات</label><textarea name="education" placeholder="Formation et diplômes"></textarea></div>
-   <div class="field full"><label>المهارات</label><textarea name="skills" placeholder="Compétences"></textarea></div>
-  </div><div class="actions"><button class="btn btn-primary">معاينة CV</button></div></form><div id="cvPreview"></div>`;
-  $("cvForm").addEventListener("submit",e=>{
-   e.preventDefault();const f=new FormData(e.target);
-   const text=`${f.get("name")}\n${f.get("city")} | ${f.get("phone")} | ${f.get("email")}\n\nالخبرة المهنية\n${f.get("experience")}\n\nالتعليم والشهادات\n${f.get("education")}\n\nالمهارات\n${f.get("skills")}`;
-   $("cvPreview").innerHTML=`<div class="preview"><h3>${escapeHtml(f.get("name"))}</h3>${escapeHtml(text)}</div><div class="actions"><button class="btn btn-primary" id="printCV">طباعة / حفظ PDF</button><button class="btn btn-light" id="saveCV">حفظ البيانات كطلب</button></div>`;
-   $("printCV").onclick=()=>printText("CV - "+f.get("name"),text);
-   $("saveCV").onclick=()=>saveOrder(name,text);
-  });
- }else if(name==="تحويل الأرقام إلى حروف"){
-  body.innerHTML=`<div class="field"><label>المبلغ بالأرقام</label><input id="numberInput" type="number" min="0" step="any" placeholder="مثال: 1250"></div><div class="actions"><button class="btn btn-primary" id="convertNumber">تحويل</button></div><div class="preview" id="numberResult">أدخل رقمًا ثم اضغط تحويل.</div>`;
-  $("convertNumber").onclick=()=>{
-   const value=Number($("numberInput").value);
-   if(!Number.isFinite(value)||value<0){showToast("أدخل رقمًا صحيحًا.");return}
-   const words=new Intl.NumberFormat("ar-DZ",{style:"decimal",maximumFractionDigits:3}).format(value);
-   $("numberResult").textContent="الرقم: "+words;
-  };
- }else if(name==="إنشاء فاتورة"){
-  body.innerHTML=`<form id="invoiceForm"><div class="form-grid">
-   <div class="field"><label>اسم المحل</label><input name="shop" placeholder="اسم المحل"></div>
-   <div class="field"><label>اسم الزبون</label><input name="customer" placeholder="اسم الزبون"></div>
-   <div class="field"><label>المنتج أو الخدمة</label><input name="product" required placeholder="المنتج"></div>
-   <div class="field"><label>السعر (دج)</label><input name="price" type="number" min="0" required placeholder="0"></div>
-   <div class="field"><label>الكمية</label><input name="qty" type="number" min="1" value="1" required></div>
-   <div class="field"><label>التاريخ</label><input name="date" type="date"></div>
-  </div><div class="actions"><button class="btn btn-primary">إنشاء الفاتورة</button></div></form><div id="invoicePreview"></div>`;
-  $("invoiceForm").addEventListener("submit",e=>{
-   e.preventDefault();const f=new FormData(e.target);const total=Number(f.get("price"))*Number(f.get("qty"));
-   const text=`${f.get("shop")||"فاتورة"}\nالزبون: ${f.get("customer")||"غير محدد"}\nالتاريخ: ${f.get("date")}\nالمنتج: ${f.get("product")}\nالسعر: ${f.get("price")} دج\nالكمية: ${f.get("qty")}\nالمجموع: ${total.toLocaleString("fr-DZ")} دج`;
-   $("invoicePreview").innerHTML=`<div class="preview"><h3>فاتورة</h3>${escapeHtml(text)}</div><div class="actions"><button class="btn btn-primary" id="printInvoice">طباعة / PDF</button><button class="btn btn-light" id="saveInvoice">حفظ الطلب</button></div>`;
-   $("printInvoice").onclick=()=>printText("فاتورة",text);
-   $("saveInvoice").onclick=()=>saveOrder(name,text);
-  });
- }else if(name==="إنشاء QR Code"){
-  body.innerHTML=`<div class="field"><label>النص أو الرابط</label><textarea id="qrText" placeholder="أدخل رابطًا أو نصًا"></textarea></div><div class="actions"><button class="btn btn-primary" id="makeQR">إنشاء الرمز</button></div><div id="qrResult" class="preview">مولد QR يحتاج إلى تفعيل مكتبة الرمز في الموقع.</div>`;
-  $("makeQR").onclick=()=>showToast("سيتم ربط مولد QR في المرحلة القادمة.");
- }else if(name==="تحويل الصور إلى PDF"||name==="تحويل PDF إلى صور"||name==="استخراج النص من صورة"||name==="دمج ملفات PDF"){
-  body.innerHTML=`<div class="notice">واجهة الخدمة جاهزة. تنفيذ تحويل الملفات يحتاج إلى إضافة مكتبة معالجة مناسبة وربطها في الموقع.</div><div class="field"><label>اختر الملف</label><input type="file" id="toolFile" accept="${name==="تحويل الصور إلى PDF"||name==="استخراج النص من صورة"?"image/*":".pdf,application/pdf"}" ${name==="دمج ملفات PDF"?"multiple":""}></div><div class="actions"><button class="btn btn-primary" id="runTool">متابعة</button></div><div id="toolResult"></div>`;
-  $("runTool").onclick=()=>{
-   const files=$("toolFile").files;
-   if(!files.length){showToast("اختر ملفًا أولًا.");return}
-   $("toolResult").innerHTML=`<div class="preview">تم اختيار ${files.length} ملف. معالجة الملفات غير مفعّلة بعد.</div>`;
-  };
- }else if(name==="رسالة تحفيز"||name==="طلب توظيف"){
-  body.innerHTML=`<form id="letterForm"><div class="form-grid">
-   <div class="field"><label>الاسم الكامل</label><input name="name" required></div>
-   <div class="field"><label>الشركة أو المؤسسة</label><input name="company" required></div>
-   <div class="field"><label>المنصب المطلوب</label><input name="position" required></div>
-   <div class="field"><label>المدينة والتاريخ</label><input name="date"></div>
-   <div class="field full"><label>معلومات إضافية</label><textarea name="details"></textarea></div>
-  </div><div class="actions"><button class="btn btn-primary">إنشاء المعاينة</button></div></form><div id="letterPreview"></div>`;
-  $("letterForm").addEventListener("submit",e=>{
-   e.preventDefault();const f=new FormData(e.target);
-   const text=`إلى السيد/السيدة المسؤول(ة) لدى ${f.get("company")}\nالموضوع: ${name} - ${f.get("position")}\n\nأنا ${f.get("name")}، أتقدم إليكم بهذا الطلب بخصوص منصب ${f.get("position")}.\n${f.get("details")}\n\nوتفضلوا بقبول فائق الاحترام.\n${f.get("date")}`;
-   $("letterPreview").innerHTML=`<div class="preview">${escapeHtml(text)}</div><div class="actions"><button class="btn btn-primary" id="printLetter">طباعة / PDF</button><button class="btn btn-light" id="saveLetter">حفظ الطلب</button></div>`;
-   $("printLetter").onclick=()=>printText(name,text);
-   $("saveLetter").onclick=()=>saveOrder(name,text);
-  });
- }else if(name==="حساب الزبائن"||name==="سجل المبيعات"){
-  body.innerHTML=`<form id="customerForm"><div class="form-grid">
-   <div class="field"><label>اسم الزبون أو العملية</label><input name="customer" required></div>
-   <div class="field"><label>المبلغ (دج)</label><input name="amount" type="number" min="0" required></div>
-   <div class="field"><label>التفاصيل</label><input name="details"></div>
-  </div><div class="actions"><button class="btn btn-primary">حفظ السجل</button></div></form><div id="customerResult"></div>`;
-  $("customerForm").addEventListener("submit",e=>{
-   e.preventDefault();const f=new FormData(e.target);
-   const text=`الاسم: ${f.get("customer")}\nالمبلغ: ${f.get("amount")} دج\nالتفاصيل: ${f.get("details")}`;
-   saveOrder(name,text);
-   $("customerResult").innerHTML=`<div class="preview">${escapeHtml(text)}</div>`;
-  });
- }else if(name==="التسجيلات الإلكترونية"||name==="المسابقات والتوظيف"||name==="الخدمات الجامعية"||name==="روابط رسمية"){
-  body.innerHTML=`<div class="notice">قبل إضافة أي رابط رسمي، يجب التأكد من صحته وتحديثه.</div><div class="field"><label>اسم الموقع أو الجهة التي تبحث عنها</label><input id="officialSearch" placeholder="اكتب اسم التسجيل أو المسابقة"></div><div class="actions"><button class="btn btn-primary" id="searchOfficial">البحث عن الخدمة</button></div>`;
-  $("searchOfficial").onclick=()=>{
-   const q=$("officialSearch").value.trim();
-   if(!q){showToast("اكتب اسم الخدمة أولًا.");return}
-   window.open("https://www.google.com/search?q="+encodeURIComponent(q+" الموقع الرسمي الجزائر"),"_blank","noopener");
-  };
- }else{
-  body.innerHTML=`<div class="notice">تم تجهيز واجهة الخدمة. التنفيذ الكامل لهذه الخدمة سيتم تفعيله في المرحلة القادمة.</div>
-  <div class="field"><label>تفاصيل الطلب</label><textarea id="genericDetails" placeholder="اكتب التفاصيل المطلوبة..."></textarea></div>
-  <div class="actions"><button class="btn btn-primary" id="genericSave">حفظ الطلب</button></div>`;
-  $("genericSave").onclick=()=>saveOrder(name,$("genericDetails").value);
- }
+const name=service.name,body=$("workspaceBody");
+if(["طلب خطي","طلب عمل","طلب إداري","تصريح شرفي"].includes(name)){
+body.innerHTML=`<form id="docForm"><div class="form-grid"><div class="field"><label>الاسم واللقب</label><input name="fullName" required></div><div class="field"><label>الجهة الموجه إليها الطلب</label><input name="recipient" required placeholder="السيد مدير..."></div><div class="field"><label>الموضوع</label><input name="subject" required value="${escapeHtml(name)}"></div><div class="field"><label>المدينة والتاريخ</label><input name="placeDate"></div><div class="field full"><label>نص الطلب أو التفاصيل</label><textarea name="details" required></textarea></div></div><div class="actions"><button class="btn btn-primary">إنشاء المعاينة</button></div></form><div id="docPreview"></div>`;
+$("docForm").addEventListener("submit",e=>{e.preventDefault();const f=new FormData(e.target),text=`إلى: ${f.get("recipient")}\n\nالموضوع: ${f.get("subject")}\n\nأنا ${f.get("fullName")}، أتقدم إلى سيادتكم بهذا الطلب:\n${f.get("details")}\n\nوتفضلوا بقبول فائق الاحترام والتقدير.\n${f.get("placeDate")}`;$("docPreview").innerHTML=`<div class="preview"><h3>${escapeHtml(f.get("subject"))}</h3>${escapeHtml(text)}</div><div class="actions"><button class="btn btn-primary" id="printDoc">طباعة / حفظ PDF</button><button class="btn btn-light" id="copyDoc">نسخ النص</button><button class="btn btn-light" id="saveDoc">حفظ الطلب</button></div>`;$("printDoc").onclick=()=>printText(name,text);$("copyDoc").onclick=()=>copyText(text);$("saveDoc").onclick=()=>saveOrder(name,text)});
+}else if(name.includes("بحث")||name==="تمارين وحلول"||name==="فروض واختبارات"||name==="تحويل البحث إلى PowerPoint"){
+body.innerHTML=`<div class="notice">هذه الواجهة تحفظ تفاصيل طلب البحث في حسابك. إنشاء البحث بالذكاء الاصطناعي وتصدير Word/PowerPoint يحتاجان إلى ربط خدمة الخادم لاحقًا.</div><form id="researchForm"><div class="form-grid"><div class="field"><label>المستوى الدراسي</label><select name="level"><option>ابتدائي</option><option>متوسط</option><option>ثانوي</option><option>جامعي</option></select></div><div class="field"><label>المادة</label><input name="subject" required placeholder="التاريخ، العلوم..."></div><div class="field full"><label>عنوان البحث</label><input name="title" required></div><div class="field"><label>عدد الصفحات</label><select name="pages"><option>3 صفحات</option><option>5 صفحات</option><option>10 صفحات</option><option>15 صفحة</option><option>20 صفحة</option></select></div><div class="field"><label>إضافة صور</label><select name="pictures"><option>نعم، أريد صورًا</option><option>لا أريد صورًا</option></select></div><div class="field full"><label>تعليمات إضافية</label><textarea name="details" placeholder="المحاور المطلوبة، اللغة، الشروط..."></textarea></div></div><div class="actions"><button class="btn btn-primary">معاينة الطلب</button><button type="reset" class="btn btn-light">مسح</button></div></form><div id="researchPreview"></div>`;
+$("researchForm").addEventListener("submit",e=>{e.preventDefault();const f=new FormData(e.target),text=`طلب بحث جاهز\nالعنوان: ${f.get("title")}\nالمستوى: ${f.get("level")}\nالمادة: ${f.get("subject")}\nعدد الصفحات: ${f.get("pages")}\nالصور: ${f.get("pictures")}\nالتعليمات: ${f.get("details")}`;$("researchPreview").innerHTML=`<div class="preview"><h3>معاينة طلب البحث</h3>${escapeHtml(text)}</div><div class="actions"><button class="btn btn-primary" id="saveResearch">حفظ الطلب</button><button class="btn btn-light" id="copyResearch">نسخ التفاصيل</button></div>`;$("saveResearch").onclick=()=>saveOrder(name,text);$("copyResearch").onclick=()=>copyText(text)});
+}else if(name==="إنشاء CV"||name==="CV بالفرنسية"){
+body.innerHTML=`<form id="cvForm"><div class="form-grid"><div class="field"><label>الاسم الكامل</label><input name="name" required placeholder="Nom et prénom"></div><div class="field"><label>رقم الهاتف</label><input name="phone"></div><div class="field"><label>البريد الإلكتروني</label><input name="email" type="email"></div><div class="field"><label>المدينة</label><input name="city"></div><div class="field full"><label>الخبرة المهنية</label><textarea name="experience"></textarea></div><div class="field full"><label>التعليم والشهادات</label><textarea name="education"></textarea></div><div class="field full"><label>المهارات</label><textarea name="skills"></textarea></div></div><div class="actions"><button class="btn btn-primary">معاينة CV</button></div></form><div id="cvPreview"></div>`;
+$("cvForm").addEventListener("submit",e=>{e.preventDefault();const f=new FormData(e.target),text=`${f.get("name")}\n${f.get("city")} | ${f.get("phone")} | ${f.get("email")}\n\nالخبرة المهنية\n${f.get("experience")}\n\nالتعليم والشهادات\n${f.get("education")}\n\nالمهارات\n${f.get("skills")}`;$("cvPreview").innerHTML=`<div class="preview"><h3>${escapeHtml(f.get("name"))}</h3>${escapeHtml(text)}</div><div class="actions"><button class="btn btn-primary" id="printCV">طباعة / حفظ PDF</button><button class="btn btn-light" id="saveCV">حفظ كطلب</button></div>`;$("printCV").onclick=()=>printText("CV - "+f.get("name"),text);$("saveCV").onclick=()=>saveOrder(name,text)});
+}else if(name==="إنشاء فاتورة"){
+body.innerHTML=`<form id="invoiceForm"><div class="form-grid"><div class="field"><label>اسم المحل</label><input name="shop"></div><div class="field"><label>اسم الزبون</label><input name="customer"></div><div class="field"><label>المنتج أو الخدمة</label><input name="product" required></div><div class="field"><label>السعر (دج)</label><input name="price" type="number" min="0" required></div><div class="field"><label>الكمية</label><input name="qty" type="number" min="1" value="1" required></div><div class="field"><label>التاريخ</label><input name="date" type="date"></div></div><div class="actions"><button class="btn btn-primary">إنشاء الفاتورة</button></div></form><div id="invoicePreview"></div>`;
+$("invoiceForm").addEventListener("submit",e=>{e.preventDefault();const f=new FormData(e.target),total=Number(f.get("price"))*Number(f.get("qty")),text=`${f.get("shop")||"فاتورة"}\nالزبون: ${f.get("customer")||"غير محدد"}\nالتاريخ: ${f.get("date")}\nالمنتج: ${f.get("product")}\nالسعر: ${f.get("price")} دج\nالكمية: ${f.get("qty")}\nالمجموع: ${total.toLocaleString("fr-DZ")} دج`;$("invoicePreview").innerHTML=`<div class="preview"><h3>فاتورة</h3>${escapeHtml(text)}</div><div class="actions"><button class="btn btn-primary" id="printInvoice">طباعة / PDF</button><button class="btn btn-light" id="saveInvoice">حفظ الطلب</button></div>`;$("printInvoice").onclick=()=>printText("فاتورة",text);$("saveInvoice").onclick=()=>saveOrder(name,text)});
+}else if(name==="تحويل الأرقام إلى حروف"){
+body.innerHTML=`<div class="field"><label>المبلغ بالأرقام</label><input id="numberInput" type="number" min="0" step="any"></div><div class="actions"><button class="btn btn-primary" id="convertNumber">تحويل</button></div><div class="preview" id="numberResult">أدخل رقمًا ثم اضغط تحويل.</div>`;
+$("convertNumber").onclick=()=>{const v=Number($("numberInput").value);if(!Number.isFinite(v)||v<0){showToast("أدخل رقمًا صحيحًا.");return}$("numberResult").textContent="الرقم: "+new Intl.NumberFormat("ar-DZ",{maximumFractionDigits:3}).format(v)};
+}else if(["تحويل الصور إلى PDF","تحويل PDF إلى صور","استخراج النص من صورة","دمج ملفات PDF"].includes(name)){
+body.innerHTML=`<div class="notice">واجهة اختيار الملفات متاحة، لكن المعالجة الفعلية تحتاج إلى مكتبة مخصصة لم يتم ربطها بعد.</div><div class="field"><label>اختر الملف</label><input type="file" id="toolFile" accept="${name==="تحويل الصور إلى PDF"||name==="استخراج النص من صورة"?"image/*":".pdf,application/pdf"}" ${name==="دمج ملفات PDF"?"multiple":""}></div><div class="actions"><button class="btn btn-primary" id="runTool">متابعة</button></div><div id="toolResult"></div>`;
+$("runTool").onclick=()=>{const files=$("toolFile").files;if(!files.length){showToast("اختر ملفًا أولًا.");return}$("toolResult").innerHTML=`<div class="preview">تم اختيار ${files.length} ملف. المعالجة غير مفعّلة بعد.</div>`};
+}else if(name==="رسالة تحفيز"||name==="طلب توظيف"){
+body.innerHTML=`<form id="letterForm"><div class="form-grid"><div class="field"><label>الاسم الكامل</label><input name="name" required></div><div class="field"><label>الشركة أو المؤسسة</label><input name="company" required></div><div class="field"><label>المنصب المطلوب</label><input name="position" required></div><div class="field"><label>المدينة والتاريخ</label><input name="date"></div><div class="field full"><label>معلومات إضافية</label><textarea name="details"></textarea></div></div><div class="actions"><button class="btn btn-primary">إنشاء المعاينة</button></div></form><div id="letterPreview"></div>`;
+$("letterForm").addEventListener("submit",e=>{e.preventDefault();const f=new FormData(e.target),text=`إلى المسؤول لدى ${f.get("company")}\nالموضوع: ${name} - ${f.get("position")}\n\nأنا ${f.get("name")}، أتقدم إليكم بخصوص منصب ${f.get("position")}.\n${f.get("details")}\n\nوتفضلوا بقبول فائق الاحترام.\n${f.get("date")}`;$("letterPreview").innerHTML=`<div class="preview">${escapeHtml(text)}</div><div class="actions"><button class="btn btn-primary" id="printLetter">طباعة / PDF</button><button class="btn btn-light" id="saveLetter">حفظ الطلب</button></div>`;$("printLetter").onclick=()=>printText(name,text);$("saveLetter").onclick=()=>saveOrder(name,text)});
+}else if(["التسجيلات الإلكترونية","المسابقات والتوظيف","الخدمات الجامعية","روابط رسمية"].includes(name)){
+body.innerHTML=`<div class="notice">تحقق من الرابط الرسمي قبل إدخال بياناتك.</div><div class="field"><label>اسم الموقع أو الجهة</label><input id="officialSearch"></div><div class="actions"><button class="btn btn-primary" id="searchOfficial">البحث عن الخدمة</button></div>`;
+$("searchOfficial").onclick=()=>{const q=$("officialSearch").value.trim();if(!q){showToast("اكتب اسم الخدمة أولًا.");return}window.open("https://www.google.com/search?q="+encodeURIComponent(q+" الموقع الرسمي الجزائر"),"_blank","noopener")};
+}else{
+body.innerHTML=`<div class="notice">واجهة الخدمة جاهزة لحفظ طلبك. قد تحتاج بعض الأدوات إلى تفعيل تقني إضافي.</div><div class="field"><label>تفاصيل الطلب</label><textarea id="genericDetails"></textarea></div><div class="actions"><button class="btn btn-primary" id="genericSave">حفظ الطلب</button></div>`;
+$("genericSave").onclick=()=>saveOrder(name,$("genericDetails").value);
 }
-function printText(title,text){
- const w=window.open("","_blank");
- if(!w){showToast("اسمح بفتح النوافذ المنبثقة للطباعة.");return}
- w.document.write(`<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><title>${escapeHtml(title)}</title><style>body{font-family:Tahoma,Arial,sans-serif;padding:35px;line-height:2;white-space:pre-wrap}h2{text-align:center}</style></head><body><h2>${escapeHtml(title)}</h2>${escapeHtml(text)}<script>window.onload=()=>window.print()<\/script></body></html>`);
- w.document.close();
 }
-async function copyText(text){
- try{await navigator.clipboard.writeText(text);showToast("تم نسخ النص.")}
- catch{showToast("تعذر النسخ التلقائي في هذا المتصفح.")}
+
+function printText(title,text){const w=window.open("","_blank");if(!w){showToast("اسمح بفتح النوافذ المنبثقة للطباعة.");return}w.document.write(`<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><title>${escapeHtml(title)}</title><style>body{font-family:Tahoma,Arial,sans-serif;padding:35px;line-height:2;white-space:pre-wrap}h2{text-align:center}</style></head><body><h2>${escapeHtml(title)}</h2>${escapeHtml(text)}<script>window.onload=()=>window.print()<\/script></body></html>`);w.document.close()}
+async function copyText(text){try{await navigator.clipboard.writeText(text);showToast("تم نسخ النص.")}catch{showToast("تعذر النسخ التلقائي في هذا المتصفح.")}}
+
+async function saveOrder(title,details){
+if(!currentUser){showToast("سجّل الدخول أولًا.");return}
+const {error}=await supabase.from("orders").insert({user_id:currentUser.id,title,details:String(details||""),status:"pending"});
+if(error){showToast("فشل حفظ الطلب: "+error.message);return}
+await loadCloudOrders();showToast("تم حفظ الطلب في حسابك بنجاح.")
 }
-function saveOrder(title,details){
- savedOrders.unshift({id:Date.now(),title,details,date:new Date().toLocaleString("ar-DZ"),status:"مسجل محليًا"});
- saveStore("printora_orders",savedOrders);
- updateStats();
- showToast("تم حفظ الطلب على هذا الجهاز.");
+async function loadCloudOrders(){
+const {data,error}=await supabase.from("orders").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false});
+if(error){showToast("تعذر تحميل الطلبات: "+error.message);return}
+savedOrders=(data||[]).map(o=>({id:o.id,title:o.title||"طلب",details:o.details||"",date:o.created_at?new Date(o.created_at).toLocaleString("ar-DZ"):"",status:o.status||"قيد المعالجة"}));
+updateStats();renderOrders()
 }
 function renderOrders(){
- const el=$("ordersList");
- if(!savedOrders.length){el.innerHTML='<div class="empty">لا توجد طلبات محفوظة حاليًا.</div>';return}
- el.innerHTML=savedOrders.map(o=>`
- <div class="service-card" style="margin-bottom:12px;cursor:default">
- <div style="display:flex;justify-content:space-between;gap:10px;align-items:center">
- <h3>${escapeHtml(o.title)}</h3><small style="color:var(--muted)">${escapeHtml(o.date)}</small>
- </div><p style="white-space:pre-wrap">${escapeHtml(o.details)}</p>
- <span>${escapeHtml(o.status)}</span>
- <div class="actions"><button class="btn btn-light" data-print="${o.id}">طباعة</button><button class="btn btn-danger" data-delete="${o.id}">حذف</button></div>
- </div>`).join("");
- el.querySelectorAll("[data-print]").forEach(b=>b.onclick=()=>{
-  const o=savedOrders.find(x=>x.id===Number(b.dataset.print));if(o)printText(o.title,o.details);
- });
- el.querySelectorAll("[data-delete]").forEach(b=>b.onclick=()=>{
-  savedOrders=savedOrders.filter(x=>x.id!==Number(b.dataset.delete));
-  saveStore("printora_orders",savedOrders);renderOrders();updateStats();
- });
+const el=$("ordersList");
+if(!savedOrders.length){el.innerHTML='<div class="empty">لا توجد طلبات محفوظة حاليًا.</div>';return}
+el.innerHTML=savedOrders.map(o=>`<div class="service-card" style="margin-bottom:12px;cursor:default"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><h3>${escapeHtml(o.title)}</h3><small style="color:var(--muted)">${escapeHtml(o.date)}</small></div><p style="white-space:pre-wrap">${escapeHtml(o.details)}</p><span>${escapeHtml(o.status)}</span><div class="actions"><button class="btn btn-light" data-print="${escapeHtml(o.id)}">طباعة</button><button class="btn btn-danger" data-delete="${escapeHtml(o.id)}">حذف</button></div></div>`).join("");
+el.querySelectorAll("[data-print]").forEach(b=>b.onclick=()=>{const o=savedOrders.find(x=>String(x.id)===b.dataset.print);if(o)printText(o.title,o.details)});
+el.querySelectorAll("[data-delete]").forEach(b=>b.onclick=async()=>{const {error}=await supabase.from("orders").delete().eq("id",b.dataset.delete).eq("user_id",currentUser.id);if(error){showToast("تعذر حذف الطلب: "+error.message);return}await loadCloudOrders();showToast("تم حذف الطلب.")})
 }
-function updateStats(){
- $("pointsValue").textContent=points;
- $("pointsValue2").textContent=points;
- $("ordersValue").textContent=savedOrders.length;
+function updateStats(){$("pointsValue").textContent=points;$("pointsValue2").textContent=points;$("ordersValue").textContent=savedOrders.length}
+function loadProfile(){const f=$("profileForm");f.elements.email.value=currentUser?.email||"";f.elements.name.value=profile.name||"";f.elements.username.value=profile.username||"";f.elements.phone.value=profile.phone||""}
+async function loadCloudProfile(){
+const {data,error}=await supabase.from("profiles").select("*").eq("id",currentUser.id).maybeSingle();
+if(error){showToast("تعذر تحميل الحساب: "+error.message);return}
+if(data){profile={name:data.full_name||"",username:data.username||"",phone:data.phone||"",email:currentUser.email||""};points=Number(data.points||0)}else{profile={name:"",username:"",phone:"",email:currentUser.email||""};points=0}
+loadProfile();updateStats()
 }
-function loadProfile(){
- const form=$("profileForm");
- Object.entries(profile).forEach(([key,value])=>{if(form.elements[key])form.elements[key].value=value});
-}
-$("profileForm").addEventListener("submit",e=>{
- e.preventDefault();
- profile=Object.fromEntries(new FormData(e.target).entries());
- saveStore("printora_profile",profile);
- showToast("تم حفظ معلوماتك على هذا الجهاز.");
+$("profileForm").addEventListener("submit",async e=>{
+e.preventDefault();if(!currentUser)return;
+const f=Object.fromEntries(new FormData(e.target).entries());
+const {error}=await supabase.from("profiles").upsert({id:currentUser.id,full_name:f.name||"",username:f.username||"",phone:f.phone||""},{onConflict:"id"});
+if(error){showToast("فشل حفظ المعلومات: "+error.message);return}
+profile={name:f.name||"",username:f.username||"",phone:f.phone||"",email:currentUser.email||""};showToast("تم حفظ معلومات حسابك.")
 });
+async function logoutUser(){const {error}=await supabase.auth.signOut();if(error){showToast("تعذر تسجيل الخروج: "+error.message);return}window.location.replace("index.html")}
+
+$("logoutButton").addEventListener("click",logoutUser);
 $("backHome").addEventListener("click",()=>setPage("home"));
 document.querySelectorAll("[data-page]").forEach(b=>b.addEventListener("click",()=>setPage(b.dataset.page)));
-document.querySelectorAll("[data-toggle]").forEach(b=>b.addEventListener("click",()=>{
- const id=b.dataset.toggle;
- $("sub-"+id).classList.toggle("open");
- b.classList.toggle("active");
-}));
-document.querySelectorAll("[data-category]").forEach(b=>b.addEventListener("click",()=>{
- const id=b.dataset.category;
- const c=categories.find(x=>x.id===id);
- if(c&&c.services.length)openService(c.services[0][0]);
-}));
-document.querySelectorAll("[data-service]").forEach(b=>b.addEventListener("click",()=>openService(b.dataset.service)));
+document.querySelectorAll("[data-toggle]").forEach(b=>b.addEventListener("click",()=>{const id=b.dataset.toggle;$("sub-"+id).classList.toggle("open");b.classList.toggle("active")}));
+document.querySelectorAll(".side-sub [data-service]").forEach(b=>b.addEventListener("click",()=>openService(b.dataset.service)));
 $("serviceSearch").addEventListener("input",e=>renderServices(e.target.value));
-$("themeButton").addEventListener("click",()=>{
- document.body.classList.toggle("dark");
- $("themeButton").textContent=document.body.classList.contains("dark")?"☀️ الوضع الفاتح":"🌙 الوضع الداكن";
-});
+$("themeButton").addEventListener("click",()=>{document.body.classList.toggle("dark");$("themeButton").textContent=document.body.classList.contains("dark")?"☀️ الوضع الفاتح":"🌙 الوضع الداكن"});
+$("discoverButton").addEventListener("click",()=>$("servicesSection").scrollIntoView({behavior:"smooth"}));
 $("year").textContent=new Date().getFullYear();
+
+async function startClient(){
+const {data,error}=await supabase.auth.getSession();
+if(error||!data.session){window.location.replace("index.html");return}
+currentUser=data.session.user;
 renderServices();
-updateStats();
+await loadCloudProfile();
+await loadCloudOrders();
+}
+startClient();
 </script>
 </body>
 </html>
