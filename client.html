@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -7,9 +8,9 @@
 <title>PrintoraKM | فضاء الزبون</title>
 <style>
 :root{
-  --bg:#f3f6fc;--panel:#fff;--navy:#101b35;--blue:#2868f5;
-  --cyan:#20c8e8;--text:#1a2942;--muted:#7a879c;
-  --border:#e5eaf3;--shadow:0 10px 30px #172e590c;
+--bg:#f3f6fc;--panel:#fff;--navy:#101b35;--blue:#2868f5;
+--cyan:#20c8e8;--text:#1a2942;--muted:#7a879c;
+--border:#e5eaf3;--shadow:0 10px 30px #172e590c;
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font-family:"Segoe UI",Tahoma,Arial,sans-serif}
@@ -49,6 +50,7 @@ button:hover{transform:translateY(-1px)}
 .btn-white{background:#fff;color:#1c56c8}
 .btn-light{background:#eef3ff;color:#2868f5}
 .btn-danger{background:#fff0f0;color:#c92d3e}
+.btn:disabled{opacity:.6;cursor:wait;transform:none}
 .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:20px 0}
 .stat{background:#fff;border:1px solid var(--border);border-radius:15px;padding:18px}
 .stat-top{display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:12px}
@@ -94,7 +96,8 @@ body.dark{--bg:#091222;--panel:#101e33;--navy:#f2f6ff;--text:#e5edfc;--muted:#a0
 body.dark .topbar,body.dark .section,body.dark .stat,body.dark .sidebar{background:var(--panel)}
 body.dark .side-btn{color:#b8c5da}
 body.dark .search,body.dark .field input,body.dark .field textarea,body.dark .field select,body.dark .preview{background:#0b1728;color:var(--text);border-color:var(--border)}
-body.dark .service-card h3,body.dark .section-head h2,body.dark .workspace-head h2{color:var(--text)}
+body.dark .service-card,body.dark .service-card h3,body.dark .section-head h2,body.dark .workspace-head h2{background:var(--panel);color:var(--text)}
+body.dark .side-sub button{color:var(--muted)}
 @media(max-width:1050px){.layout{grid-template-columns:210px minmax(0,1fr)}.service-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.toplinks button{padding:9px}}
 @media(max-width:720px){.topbar{height:auto;min-height:66px;padding:12px 4%;flex-wrap:wrap}.toplinks{width:100%;overflow:auto;flex-wrap:nowrap;padding-bottom:3px}.toplinks button{white-space:nowrap}.layout{grid-template-columns:1fr;width:94%;margin:15px auto}.sidebar{position:static;padding:10px}.side-title{padding:8px}.side-main{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px}.side-btn{margin:0;padding:10px;font-size:12px}.side-sub{padding:0;grid-column:1/-1}.side-sub.open{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.welcome{padding:23px}.stats{gap:8px}.stat{padding:12px}.stat strong{font-size:21px}.stat-top{font-size:10px}.stat-icon{width:31px;height:31px;font-size:17px}.section{padding:16px}.service-grid{gap:10px}.service-card{padding:13px}.service-card h3{font-size:13px}.service-card p{min-height:55px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}}
 @media(max-width:400px){.service-grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr}.stat{display:flex;align-items:center;gap:12px}.stat strong{margin:0 auto 0 0}.stat small{display:none}}
@@ -112,6 +115,7 @@ body.dark .service-card h3,body.dark .section-head h2,body.dark .workspace-head 
 <button id="logoutButton">تسجيل الخروج ↩</button>
 </nav>
 </header>
+
 <div class="layout">
 <aside class="sidebar">
 <div class="side-title">قائمة الخدمات</div>
@@ -119,7 +123,12 @@ body.dark .service-card h3,body.dark .section-head h2,body.dark .workspace-head 
 <button class="side-btn active" data-page="home"><span class="ico">🏠</span>الرئيسية</button>
 <button class="side-btn" data-toggle="research"><span class="ico">📚</span>البحوث والدراسة　⌄</button>
 <div class="side-sub" id="sub-research">
-<button data-service="بحث جاهز">بحث جاهز</button><button data-service="بحث ابتدائي">بحث ابتدائي</button><button data-service="بحث متوسط">بحث متوسط</button><button data-service="بحث ثانوي">بحث ثانوي</button><button data-service="بحث جامعي">بحث جامعي</button><button data-service="تمارين وحلول">تمارين وحلول</button>
+<button data-service="بحث جاهز">بحث جاهز</button>
+<button data-service="بحث ابتدائي">بحث ابتدائي</button>
+<button data-service="بحث متوسط">بحث متوسط</button>
+<button data-service="بحث ثانوي">بحث ثانوي</button>
+<button data-service="بحث جامعي">بحث جامعي</button>
+<button data-service="تمارين وحلول">تمارين وحلول</button>
 </div>
 <button class="side-btn" data-toggle="documents"><span class="ico">📄</span>الوثائق الإدارية　⌄</button>
 <div class="side-sub" id="sub-documents"><button data-service="طلب خطي">طلب خطي</button><button data-service="طلب عمل">طلب عمل</button><button data-service="طلب إداري">طلب إداري</button><button data-service="تصريح شرفي">تصريح شرفي</button></div>
@@ -136,138 +145,682 @@ body.dark .service-card h3,body.dark .section-head h2,body.dark .workspace-head 
 <button class="side-btn" data-page="orders"><span class="ico">📋</span>طلباتي</button>
 </div>
 </aside>
+
 <main class="main">
 <section id="homePage">
-<div class="welcome"><small>PRINTORAKM · فضاء الزبون الرسمي</small><h1>مرحبا بكم في PrintoraKM 👋</h1><p>كل خدماتك في منصة واحدة. اختر الخدمة التي تحتاجها، وابدأ تجهيز طلبك من واجهة بسيطة ومنظمة.</p><div class="welcome-actions"><button class="btn btn-white" id="discoverButton">اكتشف الخدمات ←</button><button class="btn" style="background:#ffffff20;color:#fff;border:1px solid #ffffff30" data-page="profile">إكمال حسابي</button></div></div>
+<div class="welcome">
+<small>PRINTORAKM · فضاء الزبون الرسمي</small>
+<h1>مرحبا بكم في PrintoraKM 👋</h1>
+<p>كل خدماتك في منصة واحدة. اختر الخدمة التي تحتاجها، وابدأ تجهيز طلبك من واجهة بسيطة ومنظمة.</p>
+<div class="welcome-actions">
+<button class="btn btn-white" id="discoverButton">اكتشف الخدمات ←</button>
+<button class="btn" style="background:#ffffff20;color:#fff;border:1px solid #ffffff30" data-page="profile">إكمال حسابي</button>
+</div>
+</div>
 <div class="stats">
 <div class="stat"><div><div class="stat-top">رصيد النقاط <span class="stat-icon">⭐</span></div><strong id="pointsValue">0</strong><small>نقاط الحساب</small></div></div>
 <div class="stat"><div><div class="stat-top">طلباتي <span class="stat-icon">📋</span></div><strong id="ordersValue">0</strong><small>طلبات محفوظة في حسابك</small></div></div>
 <div class="stat"><div><div class="stat-top">الخدمات <span class="stat-icon">🧰</span></div><strong>6</strong><small>أقسام رئيسية</small></div></div>
 </div>
-<section class="section" id="servicesSection"><div class="section-head"><div><h2>اختر الخدمة</h2><p>اضغط على الخدمة لفتح واجهتها في وسط الصفحة.</p></div></div><input class="search" id="serviceSearch" placeholder="🔎 ابحث عن خدمة..." type="search"><div class="service-grid" id="serviceGrid"></div></section>
+<section class="section" id="servicesSection">
+<div class="section-head"><div><h2>اختر الخدمة</h2><p>اضغط على الخدمة لفتح واجهتها في وسط الصفحة.</p></div></div>
+<input class="search" id="serviceSearch" placeholder="🔎 ابحث عن خدمة..." type="search">
+<div class="service-grid" id="serviceGrid"></div>
 </section>
-<section class="section workspace" id="workspace"><div class="workspace-head"><div class="service-icon" id="workspaceIcon">📄</div><div><h2 id="workspaceTitle">الخدمة</h2><p id="workspaceDesc">أدخل المعلومات المطلوبة.</p></div><button class="back-btn" id="backHome">← رجوع</button></div><div id="workspaceBody"></div></section>
-<section class="section workspace" id="ordersPage"><div class="section-head"><div><h2>طلباتي</h2><p>الطلبات المحفوظة في حسابك.</p></div></div><div id="ordersList"></div></section>
-<section class="section workspace" id="pointsPage"><div class="section-head"><div><h2>نقاطي وشراء النقاط</h2><p>رصيد النقاط من قاعدة البيانات.</p></div></div><div class="notice">شراء النقاط والدفع غير مفعّلين بعد. لن يتم تغيير رصيدك من هذه الواجهة.</div><h3>رصيدك الحالي: <span id="pointsValue2">0</span> نقطة</h3></section>
-<section class="section workspace" id="profilePage"><div class="section-head"><div><h2>الملف الشخصي</h2><p>احفظ معلوماتك في حسابك.</p></div></div><form id="profileForm"><div class="form-grid"><div class="field"><label>الاسم واللقب</label><input name="name" placeholder="الاسم الكامل"></div><div class="field"><label>اسم المستخدم</label><input name="username" placeholder="اسم المستخدم"></div><div class="field"><label>رقم الهاتف</label><input name="phone" placeholder="رقم الهاتف"></div><div class="field"><label>البريد الإلكتروني</label><input name="email" type="email" readonly></div></div><div class="actions"><button class="btn btn-primary" type="submit">حفظ المعلومات</button></div></form></section>
+</section>
+
+<section class="section workspace" id="workspace">
+<div class="workspace-head">
+<div class="service-icon" id="workspaceIcon">📄</div>
+<div><h2 id="workspaceTitle">الخدمة</h2><p id="workspaceDesc">أدخل المعلومات المطلوبة.</p></div>
+<button class="back-btn" id="backHome">← رجوع</button>
+</div>
+<div id="workspaceBody"></div>
+</section>
+
+<section class="section workspace" id="ordersPage">
+<div class="section-head"><div><h2>طلباتي</h2><p>الطلبات المحفوظة في حسابك.</p></div></div>
+<div id="ordersList"></div>
+</section>
+
+<section class="section workspace" id="pointsPage">
+<div class="section-head"><div><h2>نقاطي وشراء النقاط</h2><p>رصيد النقاط من قاعدة البيانات.</p></div></div>
+<div class="notice">شراء النقاط والدفع غير مفعّلين بعد. لن يتم تغيير رصيدك من هذه الواجهة.</div>
+<h3>رصيدك الحالي: <span id="pointsValue2">0</span> نقطة</h3>
+</section>
+
+<section class="section workspace" id="profilePage">
+<div class="section-head"><div><h2>الملف الشخصي</h2><p>احفظ معلوماتك في حسابك.</p></div></div>
+<form id="profileForm">
+<div class="form-grid">
+<div class="field"><label>الاسم واللقب</label><input name="name" placeholder="الاسم الكامل"></div>
+<div class="field"><label>اسم المستخدم</label><input name="username" placeholder="اسم المستخدم"></div>
+<div class="field"><label>رقم الهاتف</label><input name="phone" placeholder="رقم الهاتف"></div>
+<div class="field"><label>البريد الإلكتروني</label><input name="email" type="email" readonly></div>
+</div>
+<div class="actions"><button class="btn btn-primary" type="submit">حفظ المعلومات</button></div>
+</form>
+</section>
+
 <div class="footer">© <span id="year"></span> PrintoraKM · كل خدماتك في منصة واحدة</div>
 </main>
 </div>
 <div class="toast" id="toast"></div>
+
 <script type="module">
 import { supabase } from "./supabase.js";
 
-const $=id=>document.getElementById(id);
-let currentUser=null,toastTimer,savedOrders=[],profile={},points=0;
+const $ = id => document.getElementById(id);
+let currentUser = null, toastTimer, savedOrders = [], profile = {}, points = 0;
 
-const categories=[
-{id:"research",title:"البحوث والدراسة",icon:"📚",desc:"بحوث مدرسية وجامعية وتمارين",services:[["بحث جاهز","📘","إنشاء طلب بحث مع معاينة وحفظ"],["بحث ابتدائي","🎒","بحوث للمستوى الابتدائي"],["بحث متوسط","📗","بحوث للمستوى المتوسط"],["بحث ثانوي","🎓","بحوث للمستوى الثانوي"],["بحث جامعي","🏛️","بحوث للمستوى الجامعي"],["تمارين وحلول","✏️","تمارين تعليمية ومراجعة"],["فروض واختبارات","📝","مواضيع للمراجعة"],["تحويل البحث إلى PowerPoint","📊","إعداد عرض تقديمي"]]},
-{id:"documents",title:"الوثائق الإدارية",icon:"📄",desc:"طلبات خطية ونماذج إدارية",services:[["طلب خطي","📝","إنشاء طلب خطي جاهز للطباعة"],["طلب عمل","💼","إعداد طلب عمل"],["طلب إداري","📄","إعداد طلب إداري"],["تصريح شرفي","✍️","إعداد تصريح شرفي"],["شهادة وإقرار","📋","نماذج متنوعة"]]},
-{id:"cv",title:"CV ورسائل التحفيز",icon:"👔",desc:"سيرة ذاتية احترافية",services:[["إنشاء CV","👔","إعداد السيرة الذاتية"],["CV بالفرنسية","🇫🇷","سيرة ذاتية باللغة الفرنسية"],["رسالة تحفيز","✉️","إعداد رسالة تحفيز"],["طلب توظيف","💼","طلب توظيف مخصص"]]},
-{id:"digital",title:"الخدمات الرقمية",icon:"🌐",desc:"التسجيلات والمنصات الرسمية",services:[["التسجيلات الإلكترونية","🖥️","روابط التسجيلات"],["المسابقات والتوظيف","📢","روابط المسابقات"],["الخدمات الجامعية","🎓","خدمات ومنصات جامعية"],["روابط رسمية","🔗","الوصول إلى المواقع الرسمية"]]},
-{id:"business",title:"خدمات المحلات",icon:"🧾",desc:"فواتير وحسابات الزبائن",services:[["إنشاء فاتورة","🧾","إعداد فاتورة بسيطة"],["حساب الزبائن","👥","تنظيم حسابات الزبائن"],["تحويل الأرقام إلى حروف","🔢","كتابة الأرقام بالحروف"],["سجل المبيعات","📒","تنظيم المبيعات"]]},
-{id:"tools",title:"أدوات PDF والملفات",icon:"🛠️",desc:"تحويل الملفات وأدوات المكتب",services:[["تحويل الصور إلى PDF","🖼️","جمع الصور في ملف PDF"],["تحويل PDF إلى صور","📑","استخراج صفحات PDF"],["استخراج النص من صورة","🔎","التعرف على النصوص OCR"],["دمج ملفات PDF","📚","جمع ملفات PDF"],["إنشاء QR Code","▦","إنشاء رمز QR"],["ترجمة النصوص","🌍","أدوات ترجمة النصوص"]]}
+const categories = [
+{id:"research",title:"البحوث والدراسة",icon:"📚",desc:"بحوث مدرسية وجامعية وتمارين",services:[
+["بحث جاهز","📘","إنشاء بحث بالذكاء الاصطناعي مع معاينة وحفظ"],
+["بحث ابتدائي","🎒","بحوث للمستوى الابتدائي"],
+["بحث متوسط","📗","بحوث للمستوى المتوسط"],
+["بحث ثانوي","🎓","بحوث للمستوى الثانوي"],
+["بحث جامعي","🏛️","بحوث للمستوى الجامعي"],
+["تمارين وحلول","✏️","تمارين تعليمية ومراجعة"],
+["فروض واختبارات","📝","مواضيع للمراجعة"],
+["تحويل البحث إلى PowerPoint","📊","إعداد عرض تقديمي"]
+]},
+{id:"documents",title:"الوثائق الإدارية",icon:"📄",desc:"طلبات خطية ونماذج إدارية",services:[
+["طلب خطي","📝","إنشاء طلب خطي جاهز للطباعة"],
+["طلب عمل","💼","إعداد طلب عمل"],
+["طلب إداري","📄","إعداد طلب إداري"],
+["تصريح شرفي","✍️","إعداد تصريح شرفي"],
+["شهادة وإقرار","📋","نماذج متنوعة"]
+]},
+{id:"cv",title:"CV ورسائل التحفيز",icon:"👔",desc:"سيرة ذاتية احترافية",services:[
+["إنشاء CV","👔","إعداد السيرة الذاتية"],
+["CV بالفرنسية","🇫🇷","سيرة ذاتية باللغة الفرنسية"],
+["رسالة تحفيز","✉️","إعداد رسالة تحفيز"],
+["طلب توظيف","💼","طلب توظيف مخصص"]
+]},
+{id:"digital",title:"الخدمات الرقمية",icon:"🌐",desc:"التسجيلات والمنصات الرسمية",services:[
+["التسجيلات الإلكترونية","🖥️","روابط التسجيلات"],
+["المسابقات والتوظيف","📢","روابط المسابقات"],
+["الخدمات الجامعية","🎓","خدمات ومنصات جامعية"],
+["روابط رسمية","🔗","الوصول إلى المواقع الرسمية"]
+]},
+{id:"business",title:"خدمات المحلات",icon:"🧾",desc:"فواتير وحسابات الزبائن",services:[
+["إنشاء فاتورة","🧾","إعداد فاتورة بسيطة"],
+["حساب الزبائن","👥","تنظيم حسابات الزبائن"],
+["تحويل الأرقام إلى حروف","🔢","كتابة الأرقام بالحروف"],
+["سجل المبيعات","📒","تنظيم المبيعات"]
+]},
+{id:"tools",title:"أدوات PDF والملفات",icon:"🛠️",desc:"تحويل الملفات وأدوات المكتب",services:[
+["تحويل الصور إلى PDF","🖼️","جمع الصور في ملف PDF"],
+["تحويل PDF إلى صور","📑","استخراج صفحات PDF"],
+["استخراج النص من صورة","🔎","التعرف على النصوص OCR"],
+["دمج ملفات PDF","📚","جمع ملفات PDF"],
+["إنشاء QR Code","▦","إنشاء رمز QR"],
+["ترجمة النصوص","🌍","أدوات ترجمة النصوص"]
+]}
 ];
 
-function showToast(message){$("toast").textContent=message;$("toast").classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>$("toast").classList.remove("show"),3500)}
-window.showToast=showToast;
-function escapeHtml(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function normalize(s){return String(s||"").toLowerCase().replace(/[أإآ]/g,"ا").replace(/ة/g,"ه").replace(/ى/g,"ي").trim()}
-function allServices(){return categories.flatMap(c=>c.services.map(s=>({name:s[0],icon:s[1],desc:s[2],category:c.id,categoryTitle:c.title})))}
-function renderServices(query=""){const q=normalize(query),list=allServices().filter(s=>normalize(s.name+" "+s.desc+" "+s.categoryTitle).includes(q));$("serviceGrid").innerHTML=list.length?list.map(s=>`<button class="service-card" data-service="${escapeHtml(s.name)}"><div class="service-icon">${s.icon}</div><h3>${escapeHtml(s.name)}</h3><p>${escapeHtml(s.desc)}</p><span>فتح الخدمة ←</span></button>`).join(""):'<div class="empty">لم نعثر على خدمة مطابقة.</div>'; $("serviceGrid").querySelectorAll("[data-service]").forEach(b=>b.addEventListener("click",()=>openService(b.dataset.service)))}
-
-function setPage(name){["homePage","workspace","ordersPage","pointsPage","profilePage"].forEach(id=>$(id).classList.remove("show"));$("homePage").classList.add("hidden");if(name==="home")$("homePage").classList.remove("hidden");else{const map={orders:"ordersPage",points:"pointsPage",profile:"profilePage"};if(map[name])$(map[name]).classList.add("show")}document.querySelectorAll("[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===name));window.scrollTo({top:0,behavior:"smooth"});if(name==="orders")renderOrders();if(name==="profile")loadProfile();if(name==="points")updateStats()}
-function openService(name){const service=allServices().find(s=>s.name===name);if(!service)return;$("homePage").classList.add("hidden");["ordersPage","pointsPage","profilePage"].forEach(id=>$(id).classList.remove("show"));$("workspace").classList.add("show");$("workspaceIcon").textContent=service.icon;$("workspaceTitle").textContent=service.name;$("workspaceDesc").textContent=service.desc;document.querySelectorAll("[data-page]").forEach(b=>b.classList.remove("active"));buildServiceForm(service);window.scrollTo({top:0,behavior:"smooth"})}
-
-function buildServiceForm(service){
-const name=service.name,body=$("workspaceBody");
-if(["طلب خطي","طلب عمل","طلب إداري","تصريح شرفي"].includes(name)){
-body.innerHTML=`<form id="docForm"><div class="form-grid"><div class="field"><label>الاسم واللقب</label><input name="fullName" required></div><div class="field"><label>الجهة الموجه إليها الطلب</label><input name="recipient" required placeholder="السيد مدير..."></div><div class="field"><label>الموضوع</label><input name="subject" required value="${escapeHtml(name)}"></div><div class="field"><label>المدينة والتاريخ</label><input name="placeDate"></div><div class="field full"><label>نص الطلب أو التفاصيل</label><textarea name="details" required></textarea></div></div><div class="actions"><button class="btn btn-primary">إنشاء المعاينة</button></div></form><div id="docPreview"></div>`;
-$("docForm").addEventListener("submit",e=>{e.preventDefault();const f=new FormData(e.target),text=`إلى: ${f.get("recipient")}\n\nالموضوع: ${f.get("subject")}\n\nأنا ${f.get("fullName")}، أتقدم إلى سيادتكم بهذا الطلب:\n${f.get("details")}\n\nوتفضلوا بقبول فائق الاحترام والتقدير.\n${f.get("placeDate")}`;$("docPreview").innerHTML=`<div class="preview"><h3>${escapeHtml(f.get("subject"))}</h3>${escapeHtml(text)}</div><div class="actions"><button class="btn btn-primary" id="printDoc">طباعة / حفظ PDF</button><button class="btn btn-light" id="copyDoc">نسخ النص</button><button class="btn btn-light" id="saveDoc">حفظ الطلب</button></div>`;$("printDoc").onclick=()=>printText(name,text);$("copyDoc").onclick=()=>copyText(text);$("saveDoc").onclick=()=>saveOrder(name,text)});
-}else if(name.includes("بحث")||name==="تمارين وحلول"||name==="فروض واختبارات"||name==="تحويل البحث إلى PowerPoint"){
-body.innerHTML=`<div class="notice">هذه الواجهة تحفظ تفاصيل طلب البحث في حسابك. إنشاء البحث بالذكاء الاصطناعي وتصدير Word/PowerPoint يحتاجان إلى ربط خدمة الخادم لاحقًا.</div><form id="researchForm"><div class="form-grid"><div class="field"><label>المستوى الدراسي</label><select name="level"><option>ابتدائي</option><option>متوسط</option><option>ثانوي</option><option>جامعي</option></select></div><div class="field"><label>المادة</label><input name="subject" required placeholder="التاريخ، العلوم..."></div><div class="field full"><label>عنوان البحث</label><input name="title" required></div><div class="field"><label>عدد الصفحات</label><select name="pages"><option>3 صفحات</option><option>5 صفحات</option><option>10 صفحات</option><option>15 صفحة</option><option>20 صفحة</option></select></div><div class="field"><label>إضافة صور</label><select name="pictures"><option>نعم، أريد صورًا</option><option>لا أريد صورًا</option></select></div><div class="field full"><label>تعليمات إضافية</label><textarea name="details" placeholder="المحاور المطلوبة، اللغة، الشروط..."></textarea></div></div><div class="actions"><button class="btn btn-primary">معاينة الطلب</button><button type="reset" class="btn btn-light">مسح</button></div></form><div id="researchPreview"></div>`;
-$("researchForm").addEventListener("submit",e=>{e.preventDefault();const f=new FormData(e.target),text=`طلب بحث جاهز\nالعنوان: ${f.get("title")}\nالمستوى: ${f.get("level")}\nالمادة: ${f.get("subject")}\nعدد الصفحات: ${f.get("pages")}\nالصور: ${f.get("pictures")}\nالتعليمات: ${f.get("details")}`;$("researchPreview").innerHTML=`<div class="preview"><h3>معاينة طلب البحث</h3>${escapeHtml(text)}</div><div class="actions"><button class="btn btn-primary" id="saveResearch">حفظ الطلب</button><button class="btn btn-light" id="copyResearch">نسخ التفاصيل</button></div>`;$("saveResearch").onclick=()=>saveOrder(name,text);$("copyResearch").onclick=()=>copyText(text)});
-}else if(name==="إنشاء CV"||name==="CV بالفرنسية"){
-body.innerHTML=`<form id="cvForm"><div class="form-grid"><div class="field"><label>الاسم الكامل</label><input name="name" required placeholder="Nom et prénom"></div><div class="field"><label>رقم الهاتف</label><input name="phone"></div><div class="field"><label>البريد الإلكتروني</label><input name="email" type="email"></div><div class="field"><label>المدينة</label><input name="city"></div><div class="field full"><label>الخبرة المهنية</label><textarea name="experience"></textarea></div><div class="field full"><label>التعليم والشهادات</label><textarea name="education"></textarea></div><div class="field full"><label>المهارات</label><textarea name="skills"></textarea></div></div><div class="actions"><button class="btn btn-primary">معاينة CV</button></div></form><div id="cvPreview"></div>`;
-$("cvForm").addEventListener("submit",e=>{e.preventDefault();const f=new FormData(e.target),text=`${f.get("name")}\n${f.get("city")} | ${f.get("phone")} | ${f.get("email")}\n\nالخبرة المهنية\n${f.get("experience")}\n\nالتعليم والشهادات\n${f.get("education")}\n\nالمهارات\n${f.get("skills")}`;$("cvPreview").innerHTML=`<div class="preview"><h3>${escapeHtml(f.get("name"))}</h3>${escapeHtml(text)}</div><div class="actions"><button class="btn btn-primary" id="printCV">طباعة / حفظ PDF</button><button class="btn btn-light" id="saveCV">حفظ كطلب</button></div>`;$("printCV").onclick=()=>printText("CV - "+f.get("name"),text);$("saveCV").onclick=()=>saveOrder(name,text)});
-}else if(name==="إنشاء فاتورة"){
-body.innerHTML=`<form id="invoiceForm"><div class="form-grid"><div class="field"><label>اسم المحل</label><input name="shop"></div><div class="field"><label>اسم الزبون</label><input name="customer"></div><div class="field"><label>المنتج أو الخدمة</label><input name="product" required></div><div class="field"><label>السعر (دج)</label><input name="price" type="number" min="0" required></div><div class="field"><label>الكمية</label><input name="qty" type="number" min="1" value="1" required></div><div class="field"><label>التاريخ</label><input name="date" type="date"></div></div><div class="actions"><button class="btn btn-primary">إنشاء الفاتورة</button></div></form><div id="invoicePreview"></div>`;
-$("invoiceForm").addEventListener("submit",e=>{e.preventDefault();const f=new FormData(e.target),total=Number(f.get("price"))*Number(f.get("qty")),text=`${f.get("shop")||"فاتورة"}\nالزبون: ${f.get("customer")||"غير محدد"}\nالتاريخ: ${f.get("date")}\nالمنتج: ${f.get("product")}\nالسعر: ${f.get("price")} دج\nالكمية: ${f.get("qty")}\nالمجموع: ${total.toLocaleString("fr-DZ")} دج`;$("invoicePreview").innerHTML=`<div class="preview"><h3>فاتورة</h3>${escapeHtml(text)}</div><div class="actions"><button class="btn btn-primary" id="printInvoice">طباعة / PDF</button><button class="btn btn-light" id="saveInvoice">حفظ الطلب</button></div>`;$("printInvoice").onclick=()=>printText("فاتورة",text);$("saveInvoice").onclick=()=>saveOrder(name,text)});
-}else if(name==="تحويل الأرقام إلى حروف"){
-body.innerHTML=`<div class="field"><label>المبلغ بالأرقام</label><input id="numberInput" type="number" min="0" step="any"></div><div class="actions"><button class="btn btn-primary" id="convertNumber">تحويل</button></div><div class="preview" id="numberResult">أدخل رقمًا ثم اضغط تحويل.</div>`;
-$("convertNumber").onclick=()=>{const v=Number($("numberInput").value);if(!Number.isFinite(v)||v<0){showToast("أدخل رقمًا صحيحًا.");return}$("numberResult").textContent="الرقم: "+new Intl.NumberFormat("ar-DZ",{maximumFractionDigits:3}).format(v)};
-}else if(["تحويل الصور إلى PDF","تحويل PDF إلى صور","استخراج النص من صورة","دمج ملفات PDF"].includes(name)){
-body.innerHTML=`<div class="notice">واجهة اختيار الملفات متاحة، لكن المعالجة الفعلية تحتاج إلى مكتبة مخصصة لم يتم ربطها بعد.</div><div class="field"><label>اختر الملف</label><input type="file" id="toolFile" accept="${name==="تحويل الصور إلى PDF"||name==="استخراج النص من صورة"?"image/*":".pdf,application/pdf"}" ${name==="دمج ملفات PDF"?"multiple":""}></div><div class="actions"><button class="btn btn-primary" id="runTool">متابعة</button></div><div id="toolResult"></div>`;
-$("runTool").onclick=()=>{const files=$("toolFile").files;if(!files.length){showToast("اختر ملفًا أولًا.");return}$("toolResult").innerHTML=`<div class="preview">تم اختيار ${files.length} ملف. المعالجة غير مفعّلة بعد.</div>`};
-}else if(name==="رسالة تحفيز"||name==="طلب توظيف"){
-body.innerHTML=`<form id="letterForm"><div class="form-grid"><div class="field"><label>الاسم الكامل</label><input name="name" required></div><div class="field"><label>الشركة أو المؤسسة</label><input name="company" required></div><div class="field"><label>المنصب المطلوب</label><input name="position" required></div><div class="field"><label>المدينة والتاريخ</label><input name="date"></div><div class="field full"><label>معلومات إضافية</label><textarea name="details"></textarea></div></div><div class="actions"><button class="btn btn-primary">إنشاء المعاينة</button></div></form><div id="letterPreview"></div>`;
-$("letterForm").addEventListener("submit",e=>{e.preventDefault();const f=new FormData(e.target),text=`إلى المسؤول لدى ${f.get("company")}\nالموضوع: ${name} - ${f.get("position")}\n\nأنا ${f.get("name")}، أتقدم إليكم بخصوص منصب ${f.get("position")}.\n${f.get("details")}\n\nوتفضلوا بقبول فائق الاحترام.\n${f.get("date")}`;$("letterPreview").innerHTML=`<div class="preview">${escapeHtml(text)}</div><div class="actions"><button class="btn btn-primary" id="printLetter">طباعة / PDF</button><button class="btn btn-light" id="saveLetter">حفظ الطلب</button></div>`;$("printLetter").onclick=()=>printText(name,text);$("saveLetter").onclick=()=>saveOrder(name,text)});
-}else if(["التسجيلات الإلكترونية","المسابقات والتوظيف","الخدمات الجامعية","روابط رسمية"].includes(name)){
-body.innerHTML=`<div class="notice">تحقق من الرابط الرسمي قبل إدخال بياناتك.</div><div class="field"><label>اسم الموقع أو الجهة</label><input id="officialSearch"></div><div class="actions"><button class="btn btn-primary" id="searchOfficial">البحث عن الخدمة</button></div>`;
-$("searchOfficial").onclick=()=>{const q=$("officialSearch").value.trim();if(!q){showToast("اكتب اسم الخدمة أولًا.");return}window.open("https://www.google.com/search?q="+encodeURIComponent(q+" الموقع الرسمي الجزائر"),"_blank","noopener")};
-}else{
-body.innerHTML=`<div class="notice">واجهة الخدمة جاهزة لحفظ طلبك. قد تحتاج بعض الأدوات إلى تفعيل تقني إضافي.</div><div class="field"><label>تفاصيل الطلب</label><textarea id="genericDetails"></textarea></div><div class="actions"><button class="btn btn-primary" id="genericSave">حفظ الطلب</button></div>`;
-$("genericSave").onclick=()=>saveOrder(name,$("genericDetails").value);
-}
+function showToast(message) {
+$("toast").textContent = message;
+$("toast").classList.add("show");
+clearTimeout(toastTimer);
+toastTimer = setTimeout(() => $("toast").classList.remove("show"), 4000);
 }
 
-function printText(title,text){const w=window.open("","_blank");if(!w){showToast("اسمح بفتح النوافذ المنبثقة للطباعة.");return}w.document.write(`<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><title>${escapeHtml(title)}</title><style>body{font-family:Tahoma,Arial,sans-serif;padding:35px;line-height:2;white-space:pre-wrap}h2{text-align:center}</style></head><body><h2>${escapeHtml(title)}</h2>${escapeHtml(text)}<script>window.onload=()=>window.print()<\/script></body></html>`);w.document.close()}
-async function copyText(text){try{await navigator.clipboard.writeText(text);showToast("تم نسخ النص.")}catch{showToast("تعذر النسخ التلقائي في هذا المتصفح.")}}
+function escapeHtml(s) {
+return String(s ?? "").replace(/[&<>"']/g, c => ({
+"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+}[c]));
+}
 
-async function saveOrder(title,details){
-if(!currentUser){showToast("سجّل الدخول أولًا.");return}
-const {error}=await supabase.from("orders").insert({user_id:currentUser.id,title,details:String(details||""),status:"pending"});
-if(error){showToast("فشل حفظ الطلب: "+error.message);return}
-await loadCloudOrders();showToast("تم حفظ الطلب في حسابك بنجاح.")
+function normalize(s) {
+return String(s || "").toLowerCase()
+.replace(/[أإآ]/g,"ا").replace(/ة/g,"ه").replace(/ى/g,"ي").trim();
 }
-async function loadCloudOrders(){
-const {data,error}=await supabase.from("orders").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false});
-if(error){showToast("تعذر تحميل الطلبات: "+error.message);return}
-savedOrders=(data||[]).map(o=>({id:o.id,title:o.title||"طلب",details:o.details||"",date:o.created_at?new Date(o.created_at).toLocaleString("ar-DZ"):"",status:o.status||"قيد المعالجة"}));
-updateStats();renderOrders()
+
+function allServices() {
+return categories.flatMap(c => c.services.map(s => ({
+name:s[0],icon:s[1],desc:s[2],category:c.id,categoryTitle:c.title
+})));
 }
-function renderOrders(){
-const el=$("ordersList");
-if(!savedOrders.length){el.innerHTML='<div class="empty">لا توجد طلبات محفوظة حاليًا.</div>';return}
-el.innerHTML=savedOrders.map(o=>`<div class="service-card" style="margin-bottom:12px;cursor:default"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><h3>${escapeHtml(o.title)}</h3><small style="color:var(--muted)">${escapeHtml(o.date)}</small></div><p style="white-space:pre-wrap">${escapeHtml(o.details)}</p><span>${escapeHtml(o.status)}</span><div class="actions"><button class="btn btn-light" data-print="${escapeHtml(o.id)}">طباعة</button><button class="btn btn-danger" data-delete="${escapeHtml(o.id)}">حذف</button></div></div>`).join("");
-el.querySelectorAll("[data-print]").forEach(b=>b.onclick=()=>{const o=savedOrders.find(x=>String(x.id)===b.dataset.print);if(o)printText(o.title,o.details)});
-el.querySelectorAll("[data-delete]").forEach(b=>b.onclick=async()=>{const {error}=await supabase.from("orders").delete().eq("id",b.dataset.delete).eq("user_id",currentUser.id);if(error){showToast("تعذر حذف الطلب: "+error.message);return}await loadCloudOrders();showToast("تم حذف الطلب.")})
+
+function renderServices(query = "") {
+const q = normalize(query);
+const list = allServices().filter(s =>
+normalize(s.name+" "+s.desc+" "+s.categoryTitle).includes(q)
+);
+$("serviceGrid").innerHTML = list.length ? list.map(s => `
+<button class="service-card" data-service="${escapeHtml(s.name)}">
+<div class="service-icon">${s.icon}</div>
+<h3>${escapeHtml(s.name)}</h3>
+<p>${escapeHtml(s.desc)}</p>
+<span>فتح الخدمة ←</span>
+</button>`).join("") : '<div class="empty">لم نعثر على خدمة مطابقة.</div>';
+
+$("serviceGrid").querySelectorAll("[data-service]").forEach(b =>
+b.addEventListener("click", () => openService(b.dataset.service))
+);
 }
-function updateStats(){$("pointsValue").textContent=points;$("pointsValue2").textContent=points;$("ordersValue").textContent=savedOrders.length}
-function loadProfile(){const f=$("profileForm");f.elements.email.value=currentUser?.email||"";f.elements.name.value=profile.name||"";f.elements.username.value=profile.username||"";f.elements.phone.value=profile.phone||""}
-async function loadCloudProfile(){
-const {data,error}=await supabase.from("profiles").select("*").eq("id",currentUser.id).maybeSingle();
-if(error){showToast("تعذر تحميل الحساب: "+error.message);return}
-if(data){profile={name:data.full_name||"",username:data.username||"",phone:data.phone||"",email:currentUser.email||""};points=Number(data.points||0)}else{profile={name:"",username:"",phone:"",email:currentUser.email||""};points=0}
-loadProfile();updateStats()
+
+function setPage(name) {
+["homePage","workspace","ordersPage","pointsPage","profilePage"]
+.forEach(id => $(id).classList.remove("show"));
+
+$("homePage").classList.add("hidden");
+
+if(name === "home") $("homePage").classList.remove("hidden");
+else {
+const map = {orders:"ordersPage",points:"pointsPage",profile:"profilePage"};
+if(map[name]) $(map[name]).classList.add("show");
 }
-$("profileForm").addEventListener("submit",async e=>{
-e.preventDefault();if(!currentUser)return;
-const f=Object.fromEntries(new FormData(e.target).entries());
-const {error}=await supabase.from("profiles").upsert({id:currentUser.id,full_name:f.name||"",username:f.username||"",phone:f.phone||""},{onConflict:"id"});
-if(error){showToast("فشل حفظ المعلومات: "+error.message);return}
-profile={name:f.name||"",username:f.username||"",phone:f.phone||"",email:currentUser.email||""};showToast("تم حفظ معلومات حسابك.")
+
+document.querySelectorAll("[data-page]").forEach(b =>
+b.classList.toggle("active",b.dataset.page === name)
+);
+
+window.scrollTo({top:0,behavior:"smooth"});
+if(name === "orders") renderOrders();
+if(name === "profile") loadProfile();
+if(name === "points") updateStats();
+}
+
+function openService(name) {
+const service = allServices().find(s => s.name === name);
+if(!service) return;
+
+$("homePage").classList.add("hidden");
+["ordersPage","pointsPage","profilePage"].forEach(id =>
+$(id).classList.remove("show")
+);
+
+$("workspace").classList.add("show");
+$("workspaceIcon").textContent = service.icon;
+$("workspaceTitle").textContent = service.name;
+$("workspaceDesc").textContent = service.desc;
+
+document.querySelectorAll("[data-page]").forEach(b => b.classList.remove("active"));
+buildServiceForm(service);
+window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function printText(title,text) {
+const w = window.open("","_blank");
+if(!w) {
+showToast("اسمح بفتح النوافذ المنبثقة للطباعة.");
+return;
+}
+w.document.write(`<!DOCTYPE html><html lang="ar" dir="rtl"><head>
+<meta charset="utf-8"><title>${escapeHtml(title)}</title>
+<style>
+body{font-family:Tahoma,Arial,sans-serif;padding:35px;line-height:2;white-space:pre-wrap}
+h2{text-align:center}
+</style></head><body><h2>${escapeHtml(title)}</h2>
+${escapeHtml(text)}
+<script>window.onload=()=>window.print()<\/script>
+</body></html>`);
+w.document.close();
+}
+
+async function copyText(text) {
+try {
+await navigator.clipboard.writeText(text);
+showToast("تم نسخ النص.");
+} catch {
+showToast("تعذر النسخ التلقائي في هذا المتصفح.");
+}
+}
+
+/*
+  يتصل هذا الجزء بالخادم الموجود على نفس الموقع.
+  يجب أن يرجع /api/ai/research نصًا في أحد الحقول المدعومة أدناه.
+*/
+async function generateAIResearch(payload) {
+const prompt = `
+أنت مساعد أكاديمي متخصص في إعداد البحوث باللغة العربية.
+أنشئ بحثًا منظمًا حسب المعلومات التالية:
+المستوى الدراسي: ${payload.level}
+المادة: ${payload.subject}
+عنوان البحث: ${payload.title}
+الحجم المطلوب: ${payload.pages}
+الصور المطلوبة: ${payload.pictures}
+تعليمات إضافية: ${payload.details || "لا توجد"}
+
+اكتب البحث مع:
+1. صفحة عنوان احترافية.
+2. مقدمة وأهداف البحث.
+3. محاور رئيسية وعناوين فرعية.
+4. خاتمة.
+5. مراجع ومصادر موثوقة.
+لا تخترع مراجع أو روابط، ولا تدّعِ التحقق من مصادر لم تتحقق منها.
+إذا طلب المستخدم صورًا، اقترح مواضع مناسبة للصور بدل الادعاء بإرفاق صور فعلية.
+أخرج نص البحث فقط، بتنسيق واضح.
+`;
+
+const response = await fetch("/api/ai/research", {
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+prompt,
+level:payload.level,
+subject:payload.subject,
+title:payload.title,
+pages:payload.pages,
+pictures:payload.pictures,
+details:payload.details
+})
 });
-async function logoutUser(){const {error}=await supabase.auth.signOut();if(error){showToast("تعذر تسجيل الخروج: "+error.message);return}window.location.replace("index.html")}
+
+const data = await response.json().catch(() => ({}));
+
+if(!response.ok || data.success === false) {
+throw new Error(data.error || data.message || `خطأ من الخادم (${response.status})`);
+}
+
+const result = data.text || data.research || data.content || data.result || data.output;
+
+if(typeof result !== "string" || !result.trim()) {
+throw new Error("الخادم لم يُرجع نص البحث. راجع server.js.");
+}
+return result.trim();
+}
+
+function downloadResearchWord(title,content) {
+const html = `<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head><meta charset="UTF-8">
+<style>
+body{font-family:Arial,Tahoma,sans-serif;direction:rtl;text-align:right;line-height:2;font-size:14pt}
+h1{text-align:center;margin-top:90px}
+.research{white-space:pre-wrap}
+</style></head>
+<body>
+<h1>${escapeHtml(title)}</h1>
+<hr>
+<div class="research">${escapeHtml(content)}</div>
+</body></html>`;
+
+const blob = new Blob(["\ufeff",html],{type:"application/msword;charset=utf-8"});
+const url = URL.createObjectURL(blob);
+const a = document.createElement("a");
+a.href = url;
+a.download = `${title.replace(/[\\/:*?"<>|]/g,"_")}.doc`;
+document.body.appendChild(a);
+a.click();
+a.remove();
+setTimeout(() => URL.revokeObjectURL(url),1500);
+}
+
+function buildServiceForm(service) {
+const name = service.name;
+const body = $("workspaceBody");
+
+if(
+["بحث جاهز","بحث ابتدائي","بحث متوسط","بحث ثانوي","بحث جامعي",
+"تمارين وحلول","فروض واختبارات","تحويل البحث إلى PowerPoint"].includes(name)
+) {
+body.innerHTML = `
+<div class="notice">
+أنشئ بحثك بالذكاء الاصطناعي، راجع النتيجة قبل استعمالها، ثم احفظها أو صدّرها.
+المراجع تحتاج إلى مراجعة قبل التسليم النهائي.
+</div>
+<form id="researchForm">
+<div class="form-grid">
+<div class="field">
+<label>المستوى الدراسي</label>
+<select name="level" required>
+<option ${name==="بحث ابتدائي"?"selected":""}>ابتدائي</option>
+<option ${name==="بحث متوسط"?"selected":""}>متوسط</option>
+<option ${name==="بحث ثانوي"?"selected":""}>ثانوي</option>
+<option ${name==="بحث جامعي"?"selected":""}>جامعي</option>
+</select>
+</div>
+<div class="field">
+<label>المادة</label>
+<input name="subject" required placeholder="التاريخ، العلوم، اللغة...">
+</div>
+<div class="field full">
+<label>عنوان البحث</label>
+<input name="title" required placeholder="اكتب عنوان البحث">
+</div>
+<div class="field">
+<label>الحجم المطلوب</label>
+<select name="pages">
+<option>3 صفحات</option><option selected>5 صفحات</option>
+<option>10 صفحات</option><option>15 صفحة</option><option>20 صفحة</option>
+</select>
+</div>
+<div class="field">
+<label>الصور</label>
+<select name="pictures">
+<option>نعم، أريد صورًا</option>
+<option>لا أريد صورًا</option>
+</select>
+</div>
+<div class="field full">
+<label>تعليمات إضافية</label>
+<textarea name="details" placeholder="المحاور المطلوبة، اللغة، شروط الأستاذ..."></textarea>
+</div>
+</div>
+<div class="actions">
+<button class="btn btn-primary" id="generateResearchButton" type="submit">إنشاء البحث بالذكاء الاصطناعي</button>
+<button class="btn btn-light" type="reset">مسح</button>
+</div>
+</form>
+<div id="researchPreview"></div>`;
+
+$("researchForm").addEventListener("submit",async e => {
+e.preventDefault();
+const form = e.currentTarget;
+const values = Object.fromEntries(new FormData(form).entries());
+const button = $("generateResearchButton");
+const preview = $("researchPreview");
+
+button.disabled = true;
+button.textContent = "جارٍ إنشاء البحث...";
+preview.innerHTML = '<div class="preview">جارٍ الاتصال بالخادم وإنشاء البحث...</div>';
+
+try {
+const content = await generateAIResearch(values);
+const title = values.title.trim();
+
+preview.innerHTML = `
+<div class="preview">
+<h3>${escapeHtml(title)}</h3>
+<div>${escapeHtml(content)}</div>
+</div>
+<div class="actions">
+<button class="btn btn-primary" id="saveResearchButton" type="button">حفظ البحث في حسابي</button>
+<button class="btn btn-light" id="wordResearchButton" type="button">تصدير Word</button>
+<button class="btn btn-light" id="pdfResearchButton" type="button">طباعة / حفظ PDF</button>
+<button class="btn btn-light" id="copyResearchButton" type="button">نسخ البحث</button>
+</div>`;
+
+$("saveResearchButton").onclick = () => saveOrder(title,content);
+$("wordResearchButton").onclick = () => downloadResearchWord(title,content);
+$("pdfResearchButton").onclick = () => printText(title,content);
+$("copyResearchButton").onclick = () => copyText(content);
+
+showToast("تم إنشاء البحث.");
+} catch(error) {
+preview.innerHTML = `
+<div class="notice">
+${escapeHtml(error.message || "حدث خطأ أثناء إنشاء البحث.")}
+<br>تحقق من إعداد GROQ_API_KEY ومن عمل الخادم.
+</div>
+<div class="actions">
+<button class="btn btn-primary" id="retryResearchButton" type="button">إعادة المحاولة</button>
+</div>`;
+$("retryResearchButton").onclick = () => form.requestSubmit();
+} finally {
+button.disabled = false;
+button.textContent = "إنشاء البحث بالذكاء الاصطناعي";
+}
+});
+
+} else if(["طلب خطي","طلب عمل","طلب إداري","تصريح شرفي"].includes(name)) {
+body.innerHTML = `
+<form id="docForm"><div class="form-grid">
+<div class="field"><label>الاسم واللقب</label><input name="fullName" required></div>
+<div class="field"><label>الجهة الموجه إليها الطلب</label><input name="recipient" required placeholder="السيد مدير..."></div>
+<div class="field"><label>الموضوع</label><input name="subject" required value="${escapeHtml(name)}"></div>
+<div class="field"><label>المدينة والتاريخ</label><input name="placeDate"></div>
+<div class="field full"><label>نص الطلب أو التفاصيل</label><textarea name="details" required></textarea></div>
+</div><div class="actions"><button class="btn btn-primary">إنشاء المعاينة</button></div></form>
+<div id="docPreview"></div>`;
+
+$("docForm").addEventListener("submit",e => {
+e.preventDefault();
+const f = new FormData(e.target);
+const text = `إلى: ${f.get("recipient")}\n\nالموضوع: ${f.get("subject")}\n\nأنا ${f.get("fullName")}، أتقدم إلى سيادتكم بهذا الطلب:\n${f.get("details")}\n\nوتفضلوا بقبول فائق الاحترام والتقدير.\n${f.get("placeDate")}`;
+$("docPreview").innerHTML = `<div class="preview"><h3>${escapeHtml(f.get("subject"))}</h3>${escapeHtml(text)}</div>
+<div class="actions"><button class="btn btn-primary" id="printDoc">طباعة / حفظ PDF</button><button class="btn btn-light" id="copyDoc">نسخ النص</button><button class="btn btn-light" id="saveDoc">حفظ الطلب</button></div>`;
+$("printDoc").onclick = () => printText(name,text);
+$("copyDoc").onclick = () => copyText(text);
+$("saveDoc").onclick = () => saveOrder(name,text);
+});
+
+} else if(name==="إنشاء CV" || name==="CV بالفرنسية") {
+body.innerHTML = `
+<form id="cvForm"><div class="form-grid">
+<div class="field"><label>الاسم الكامل</label><input name="name" required placeholder="Nom et prénom"></div>
+<div class="field"><label>رقم الهاتف</label><input name="phone"></div>
+<div class="field"><label>البريد الإلكتروني</label><input name="email" type="email"></div>
+<div class="field"><label>المدينة</label><input name="city"></div>
+<div class="field full"><label>الخبرة المهنية</label><textarea name="experience"></textarea></div>
+<div class="field full"><label>التعليم والشهادات</label><textarea name="education"></textarea></div>
+<div class="field full"><label>المهارات</label><textarea name="skills"></textarea></div>
+</div><div class="actions"><button class="btn btn-primary">معاينة CV</button></div></form>
+<div id="cvPreview"></div>`;
+
+$("cvForm").addEventListener("submit",e => {
+e.preventDefault();
+const f = new FormData(e.target);
+const text = `${f.get("name")}\n${f.get("city")} | ${f.get("phone")} | ${f.get("email")}\n\nالخبرة المهنية\n${f.get("experience")}\n\nالتعليم والشهادات\n${f.get("education")}\n\nالمهارات\n${f.get("skills")}`;
+$("cvPreview").innerHTML = `<div class="preview"><h3>${escapeHtml(f.get("name"))}</h3>${escapeHtml(text)}</div><div class="actions"><button class="btn btn-primary" id="printCV">طباعة / حفظ PDF</button><button class="btn btn-light" id="saveCV">حفظ كطلب</button></div>`;
+$("printCV").onclick = () => printText("CV - "+f.get("name"),text);
+$("saveCV").onclick = () => saveOrder(name,text);
+});
+
+} else if(name==="إنشاء فاتورة") {
+body.innerHTML = `
+<form id="invoiceForm"><div class="form-grid">
+<div class="field"><label>اسم المحل</label><input name="shop"></div>
+<div class="field"><label>اسم الزبون</label><input name="customer"></div>
+<div class="field"><label>المنتج أو الخدمة</label><input name="product" required></div>
+<div class="field"><label>السعر (دج)</label><input name="price" type="number" min="0" required></div>
+<div class="field"><label>الكمية</label><input name="qty" type="number" min="1" value="1" required></div>
+<div class="field"><label>التاريخ</label><input name="date" type="date"></div>
+</div><div class="actions"><button class="btn btn-primary">إنشاء الفاتورة</button></div></form>
+<div id="invoicePreview"></div>`;
+
+$("invoiceForm").addEventListener("submit",e => {
+e.preventDefault();
+const f = new FormData(e.target);
+const total = Number(f.get("price")) * Number(f.get("qty"));
+const text = `${f.get("shop")||"فاتورة"}\nالزبون: ${f.get("customer")||"غير محدد"}\nالتاريخ: ${f.get("date")}\nالمنتج: ${f.get("product")}\nالسعر: ${f.get("price")} دج\nالكمية: ${f.get("qty")}\nالمجموع: ${total.toLocaleString("fr-DZ")} دج`;
+$("invoicePreview").innerHTML = `<div class="preview"><h3>فاتورة</h3>${escapeHtml(text)}</div><div class="actions"><button class="btn btn-primary" id="printInvoice">طباعة / PDF</button><button class="btn btn-light" id="saveInvoice">حفظ الطلب</button></div>`;
+$("printInvoice").onclick = () => printText("فاتورة",text);
+$("saveInvoice").onclick = () => saveOrder(name,text);
+});
+
+} else if(name==="تحويل الأرقام إلى حروف") {
+body.innerHTML = `<div class="field"><label>المبلغ بالأرقام</label><input id="numberInput" type="number" min="0" step="any"></div>
+<div class="actions"><button class="btn btn-primary" id="convertNumber">تحويل</button></div>
+<div class="preview" id="numberResult">أدخل رقمًا ثم اضغط تحويل.</div>`;
+$("convertNumber").onclick = () => {
+const v = Number($("numberInput").value);
+if(!Number.isFinite(v)||v<0){showToast("أدخل رقمًا صحيحًا.");return}
+$("numberResult").textContent = "الرقم: "+new Intl.NumberFormat("ar-DZ",{maximumFractionDigits:3}).format(v);
+};
+
+} else if(["تحويل الصور إلى PDF","تحويل PDF إلى صور","استخراج النص من صورة","دمج ملفات PDF"].includes(name)) {
+body.innerHTML = `<div class="notice">اختيار الملفات متاح، لكن المعالجة الفعلية لهذه الأدوات تحتاج إلى مكتبات إضافية.</div>
+<div class="field"><label>اختر الملف</label><input type="file" id="toolFile" accept="${name==="تحويل الصور إلى PDF"||name==="استخراج النص من صورة"?"image/*":".pdf,application/pdf"}" ${name==="دمج ملفات PDF"?"multiple":""}></div>
+<div class="actions"><button class="btn btn-primary" id="runTool">متابعة</button></div><div id="toolResult"></div>`;
+$("runTool").onclick = () => {
+const files = $("toolFile").files;
+if(!files.length){showToast("اختر ملفًا أولًا.");return}
+$("toolResult").innerHTML = `<div class="preview">تم اختيار ${files.length} ملف. المعالجة غير مفعّلة بعد.</div>`;
+};
+
+} else if(name==="رسالة تحفيز" || name==="طلب توظيف") {
+body.innerHTML = `<form id="letterForm"><div class="form-grid">
+<div class="field"><label>الاسم الكامل</label><input name="name" required></div>
+<div class="field"><label>الشركة أو المؤسسة</label><input name="company" required></div>
+<div class="field"><label>المنصب المطلوب</label><input name="position" required></div>
+<div class="field"><label>المدينة والتاريخ</label><input name="date"></div>
+<div class="field full"><label>معلومات إضافية</label><textarea name="details"></textarea></div>
+</div><div class="actions"><button class="btn btn-primary">إنشاء المعاينة</button></div></form><div id="letterPreview"></div>`;
+$("letterForm").addEventListener("submit",e => {
+e.preventDefault();
+const f = new FormData(e.target);
+const text = `إلى المسؤول لدى ${f.get("company")}\nالموضوع: ${name} - ${f.get("position")}\n\nأنا ${f.get("name")}، أتقدم إليكم بخصوص منصب ${f.get("position")}.\n${f.get("details")}\n\nوتفضلوا بقبول فائق الاحترام.\n${f.get("date")}`;
+$("letterPreview").innerHTML = `<div class="preview">${escapeHtml(text)}</div><div class="actions"><button class="btn btn-primary" id="printLetter">طباعة / PDF</button><button class="btn btn-light" id="saveLetter">حفظ الطلب</button></div>`;
+$("printLetter").onclick = () => printText(name,text);
+$("saveLetter").onclick = () => saveOrder(name,text);
+});
+
+} else if(["التسجيلات الإلكترونية","المسابقات والتوظيف","الخدمات الجامعية","روابط رسمية"].includes(name)) {
+body.innerHTML = `<div class="notice">تحقق من الرابط الرسمي قبل إدخال بياناتك.</div><div class="field"><label>اسم الموقع أو الجهة</label><input id="officialSearch"></div><div class="actions"><button class="btn btn-primary" id="searchOfficial">البحث عن الخدمة</button></div>`;
+$("searchOfficial").onclick = () => {
+const q = $("officialSearch").value.trim();
+if(!q){showToast("اكتب اسم الخدمة أولًا.");return}
+window.open("https://www.google.com/search?q="+encodeURIComponent(q+" الموقع الرسمي الجزائر"),"_blank","noopener");
+};
+
+} else {
+body.innerHTML = `<div class="notice">أدخل تفاصيل طلبك واحفظه في حسابك.</div><div class="field"><label>تفاصيل الطلب</label><textarea id="genericDetails"></textarea></div><div class="actions"><button class="btn btn-primary" id="genericSave">حفظ الطلب</button></div>`;
+$("genericSave").onclick = () => saveOrder(name,$("genericDetails").value);
+}
+}
+
+async function saveOrder(title,details) {
+if(!currentUser){showToast("سجّل الدخول أولًا.");return}
+const {error} = await supabase.from("orders").insert({
+user_id:currentUser.id,title,details:String(details||""),status:"pending"
+});
+if(error){showToast("فشل حفظ الطلب: "+error.message);return}
+await loadCloudOrders();
+showToast("تم حفظ الطلب في حسابك بنجاح.");
+}
+
+async function loadCloudOrders() {
+const {data,error} = await supabase.from("orders")
+.select("*").eq("user_id",currentUser.id)
+.order("created_at",{ascending:false});
+if(error){showToast("تعذر تحميل الطلبات: "+error.message);return}
+savedOrders = (data||[]).map(o => ({
+id:o.id,title:o.title||"طلب",details:o.details||"",
+date:o.created_at?new Date(o.created_at).toLocaleString("ar-DZ"):"",
+status:o.status||"قيد المعالجة"
+}));
+updateStats();
+renderOrders();
+}
+
+function renderOrders() {
+const el = $("ordersList");
+if(!savedOrders.length) {
+el.innerHTML = '<div class="empty">لا توجد طلبات محفوظة حاليًا.</div>';
+return;
+}
+el.innerHTML = savedOrders.map(o => `
+<div class="service-card" style="margin-bottom:12px;cursor:default">
+<div style="display:flex;justify-content:space-between;gap:10px;align-items:center">
+<h3>${escapeHtml(o.title)}</h3><small style="color:var(--muted)">${escapeHtml(o.date)}</small>
+</div>
+<p style="white-space:pre-wrap">${escapeHtml(o.details)}</p>
+<span>${escapeHtml(o.status)}</span>
+<div class="actions">
+<button class="btn btn-light" data-print="${escapeHtml(o.id)}">طباعة</button>
+<button class="btn btn-danger" data-delete="${escapeHtml(o.id)}">حذف</button>
+</div></div>`).join("");
+
+el.querySelectorAll("[data-print]").forEach(b => b.onclick = () => {
+const o = savedOrders.find(x => String(x.id) === b.dataset.print);
+if(o) printText(o.title,o.details);
+});
+
+el.querySelectorAll("[data-delete]").forEach(b => b.onclick = async () => {
+const {error} = await supabase.from("orders").delete()
+.eq("id",b.dataset.delete).eq("user_id",currentUser.id);
+if(error){showToast("تعذر حذف الطلب: "+error.message);return}
+await loadCloudOrders();
+showToast("تم حذف الطلب.");
+});
+}
+
+function updateStats() {
+$("pointsValue").textContent = points;
+$("pointsValue2").textContent = points;
+$("ordersValue").textContent = savedOrders.length;
+}
+
+function loadProfile() {
+const f = $("profileForm");
+f.elements.email.value = currentUser?.email || "";
+f.elements.name.value = profile.name || "";
+f.elements.username.value = profile.username || "";
+f.elements.phone.value = profile.phone || "";
+}
+
+async function loadCloudProfile() {
+const {data,error} = await supabase.from("profiles")
+.select("*").eq("id",currentUser.id).maybeSingle();
+if(error){showToast("تعذر تحميل الحساب: "+error.message);return}
+if(data) {
+profile = {name:data.full_name||"",username:data.username||"",phone:data.phone||"",email:currentUser.email||""};
+points = Number(data.points||0);
+} else {
+profile = {name:"",username:"",phone:"",email:currentUser.email||""};
+points = 0;
+}
+loadProfile();
+updateStats();
+}
+
+$("profileForm").addEventListener("submit",async e => {
+e.preventDefault();
+if(!currentUser) return;
+const f = Object.fromEntries(new FormData(e.target).entries());
+const {error} = await supabase.from("profiles").upsert({
+id:currentUser.id,full_name:f.name||"",username:f.username||"",phone:f.phone||""
+},{onConflict:"id"});
+if(error){showToast("فشل حفظ المعلومات: "+error.message);return}
+profile = {name:f.name||"",username:f.username||"",phone:f.phone||"",email:currentUser.email||""};
+showToast("تم حفظ معلومات حسابك.");
+});
+
+async function logoutUser() {
+const {error} = await supabase.auth.signOut();
+if(error){showToast("تعذر تسجيل الخروج: "+error.message);return}
+window.location.replace("index.html");
+}
 
 $("logoutButton").addEventListener("click",logoutUser);
-$("backHome").addEventListener("click",()=>setPage("home"));
-document.querySelectorAll("[data-page]").forEach(b=>b.addEventListener("click",()=>setPage(b.dataset.page)));
-document.querySelectorAll("[data-toggle]").forEach(b=>b.addEventListener("click",()=>{const id=b.dataset.toggle;$("sub-"+id).classList.toggle("open");b.classList.toggle("active")}));
-document.querySelectorAll(".side-sub [data-service]").forEach(b=>b.addEventListener("click",()=>openService(b.dataset.service)));
-$("serviceSearch").addEventListener("input",e=>renderServices(e.target.value));
-$("themeButton").addEventListener("click",()=>{document.body.classList.toggle("dark");$("themeButton").textContent=document.body.classList.contains("dark")?"☀️ الوضع الفاتح":"🌙 الوضع الداكن"});
-$("discoverButton").addEventListener("click",()=>$("servicesSection").scrollIntoView({behavior:"smooth"}));
-$("year").textContent=new Date().getFullYear();
+$("backHome").addEventListener("click",() => setPage("home"));
 
-async function startClient(){
-const {data,error}=await supabase.auth.getSession();
-if(error||!data.session){window.location.replace("index.html");return}
-currentUser=data.session.user;
+document.querySelectorAll("[data-page]").forEach(b =>
+b.addEventListener("click",() => setPage(b.dataset.page))
+);
+
+document.querySelectorAll("[data-toggle]").forEach(b =>
+b.addEventListener("click",() => {
+const id = b.dataset.toggle;
+$("sub-"+id).classList.toggle("open");
+b.classList.toggle("active");
+})
+);
+
+document.querySelectorAll(".side-sub [data-service]").forEach(b =>
+b.addEventListener("click",() => openService(b.dataset.service))
+);
+
+$("serviceSearch").addEventListener("input",e => renderServices(e.target.value));
+
+$("themeButton").addEventListener("click",() => {
+document.body.classList.toggle("dark");
+$("themeButton").textContent = document.body.classList.contains("dark")
+?"☀️ الوضع الفاتح":"🌙 الوضع الداكن";
+});
+
+$("discoverButton").addEventListener("click",() =>
+$("servicesSection").scrollIntoView({behavior:"smooth"})
+);
+
+$("year").textContent = new Date().getFullYear();
+
+async function startClient() {
+const {data,error} = await supabase.auth.getSession();
+if(error || !data.session) {
+window.location.replace("index.html");
+return;
+}
+currentUser = data.session.user;
 renderServices();
 await loadCloudProfile();
 await loadCloudOrders();
 }
+
 startClient();
 </script>
 </body>
