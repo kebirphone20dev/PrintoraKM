@@ -82,9 +82,14 @@ async function askGroq(messages, options = {}) {
 function sendError(res, error, fallback) {
   console.error(fallback, error.message);
 
+  const message = error.message || fallback;
+
   res.status(error.status || 500).json({
     success: false,
-    error: error.message || fallback
+    error: message,
+    message,
+    answer: "",
+    text: ""
   });
 }
 
