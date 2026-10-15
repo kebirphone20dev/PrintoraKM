@@ -208,18 +208,23 @@ app.post("/api/ai/research", async (req, res) => {
       }
     );
 
-    res.json({
-      success: true,
-      research: {
-        topic,
-        level,
-        language,
-        pages,
-        includeImages,
-        content: answer,
-        createdAt: new Date().toISOString()
-      }
-    });
+   return res.json({
+  success: true,
+  text: answer,
+  answer: answer,
+  content: answer,
+  research: {
+    topic,
+    level,
+    language,
+    pages,
+    includeImages,
+    content: answer,
+    text: answer,
+    answer: answer,
+    createdAt: new Date().toISOString()
+  }
+});
   } catch (error) {
     sendError(res, error, "تعذر إنشاء البحث.");
   }
